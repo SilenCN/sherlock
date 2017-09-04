@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html><html><head>
+<script type="text/javascript" charset="utf-8">
+
+(function(){
+(function(e){function g(b){b='BridgeLog:'+b;typeof console!='undefined'&&console.log(b);ucapi&&ucapi.debug&&alert(b)}function n(b,a,c){a={errCode:a,ext:c};b.fail&&b.fail.call(this,a)}function o(b,a,c,d){var b=l===f.POLLING?i:p,e=b[a];e!==void 0?(c===q.OK?e.success&&e.success.call(this,d):n(e,c,d),delete b[a]):g('no callback:'+a)}function r(){var b=(new Date).valueOf();if(j!==0&&b-j>u)i={},j=0,g('polling stop');else{var a;a:{b=i;for(a in b)if(b.hasOwnProperty(a)){a=!1;break a}a=!0}if(!a){a=e[h][k](v,'','',f.POLLING);g('pollOnce:'+a);a:if(a!=='empty'){try{a=JSON.parse(a)}catch(c){break a}if(m.call(a)==='[object Array]')for(var d in a)a.hasOwnProperty(d)&&(b=a[d],b.callbackId===void 0||b.status===void 0||b.result===void 0||o(f.POLLING,b.callbackId,b.status,b.result))}setTimeout(r,w)}}}var h='UCShellJava',k='sdkInvoke',i={},p={},x=Math.floor(Math.random()*1E4),q={OK:0,ACCESS_DENY:1,INVALID_METHOD:2,INVALID_PARAM:3,UNKNOWN_ERROR:4},f={LOAD_URL:0,POLLING:1},l=self!=top?f.POLLING:f.LOAD_URL,v='__polling_result__',w=50,j=0,u=6E4;e.ucapi=e.ucapi||{};var m=Object.prototype.toString;if(!e[h]||m.call(e[h][k])!=='[object Function]')g('UCShellJava.sdkInvoke not exsit');else{e.ucapi.invoke=function(b,a){if(b){var c=b+x++,d={};if(a&&a.success)d.success=a.success,delete a.success;if(a&&a.fail)d.fail=a.fail,delete a.fail;(l===f.POLLING?i:p)[c]=d;d=a=a&&m.call(a)!=='[object String]'?JSON.stringify(a):'';g('invokeNative: '+b+':'+c+':'+d);if(l===f.POLLING)e[h][k](b,d,c,f.POLLING),j=(new Date).valueOf(),r();else e[h][k](b,d,c,f.LOAD_URL)}else n(a,q.INVALID_PARAM,'method is null')};e[h].sdkCallback=function(b,a,c){g('nativeCallback:'+b+':'+a+':'+c);if(c)try{c=JSON.parse(c)}catch(d){return}o(f.LOAD_URL,b,a,c)};var s=function(){this.listener={}};s.prototype={constructor:this,addEvent:function(b,a){typeof b==='string'&&typeof a==='function'&&(typeof this.listener[b]==='undefined'?this.listener[b]=[a]:typeof this.listener[b][a]!=='undefined'&&this.listener[b].push(a));return this},fireEvent:function(b,a){if(b&&this.listener[b]){var c=this.listener[b],d;for(d in c)c.hasOwnProperty(d)&&c[d].call(this,a)}return this},removeEvent:function(b){b&&this.listener[b]&&delete this.listener[b];return this}};var t=new s;e.ucapi.on=function(b,a){t.addEvent(b,a)};e[h].sdkEventFire=function(b,a){g('nativeEventFire:'+b+':'+a);if(a)try{a=JSON.parse(a)}catch(c){}t.fireEvent(b,a)}}})(window);
+
+})();
+
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+<title>帮助</title>
+<style type="text/css">
+body {background:#fff;color:#4c4c4c;font:16px/1.4em "\5FAE\8F6F\96C5\9ED1","Gotham-Medium",Helvetica,Arial;}
+body, p, div, form ,ul ,li, h1, h2, h3 {margin:0;padding:0;list-style:none;}
+img {border:0;}
+
+a {color:#329bde;text-decoration:none;}
+a:link {color:#329bde;}
+a:visited {color:#329bdd;}
+a:hover {color:#329bdf;}
+
+/* 清理浮动 */
+.clearfix:after {visibility:hidden;display:block;font-size:0;content:"";clear:both;height:0;}
+.clearfix {zoom:1;}
+
+.noline {border:none!important;}
+.orange {color:#f60;}
+
+.header {height:148px;background:#329bde;color:#fff;overflow:hidden;}
+.nav {padding-top:10px;height:14px;font-size:12px;}
+.nav li {float:left;-webkit-box-sizing:border-box;width:33.3%;height:12px;line-height:12px;text-align:center;border-right:1px #3ea6fc solid;}
+.nav li:last-child {border-right: none;}
+.nav img {margin-bottom:2px;}
+.nav a:link {color:#c5e4fd;}
+.nav a:visited {color:#c5e4fe;}
+.nav a:hover {color:#c5e4ff;}
+.logo {padding-top:30px;text-align:center;}
+.logo img {width:221px;height:42px;}
+.text {font-size:15px;text-align:center;}
+.text span {margin:0 6px;}
+.text em {margin:0 6px;display:inline-block;width:21px;border-top:1px #8dc7f9 solid;vertical-align:4px;}
+
+.module {margin:0 12px;padding-top:10px;}
+.title {height:24px;font-size:14px;color:#329bde;border-bottom:2px #329bde solid;}
+
+.list1 {padding-top:15px;}
+.list1 li {padding-bottom:15px;}
+.list1 .num {font-size:17px;}
+.list1 .num b {font-size:19px;color:#329bde;vertical-align:-1px;}
+.list1 .cont p {line-height:1.4em;font-size:15px;color:#a4a4a4;}
+
+.list2 {padding-top:15px;}
+.list2 li {padding-bottom:0px;}
+.list2 .ico {font-size:17px;}
+.list2 .ico img {width:19px;height:19px;vertical-align:-4px;}
+.list2 .cont {}
+.list2 .cont p {line-height:1.4em;font-size:15px;color:#a4a4a4;}
+
+.list3 {margin-bottom:0px;}
+.list3 li {margin-top:10px;padding-bottom:10px;font-size:14px;}
+.list3 li h2 {font-size:16px;font-weight:normal;padding-bottom:2px;}
+
+.list4 {margin-top:5px;}
+.list4 li {margin:0;padding:3px 0;font-size:15px;}
+.pl {padding-top:6px;font-size:15px;}
+.con6 {display:none;padding:5px 5px 5px 1em;font-size:15px;color:#a3a3a3;}
+
+.list5 .cont p {color:#4c4c4c;}
+
+.bgray {padding:15px 0;height:18px;background:#f6f6f6;margin-bottom:1px;font-size:16px;}
+.bgray h3 {float:left;width:80px;height:16px;line-height:16px;text-align:center;color:#329bde;font-size:16px;font-weight:normal;border-right:1px #ddd solid;}
+.bgray p {margin-left:95px;height:16px;line-height:16px;color:#3c3d48;font-size:13px;}
+
+.contact {padding:30px 0 10px;line-height:1.6em;font-size:15px;}
+.ver {padding:15px 15px 30px;font-size:15px;}
+.engine {padding-top:10px;text-align:center;font-size:14px;color:#9b9b9b;}
+a.update {display:inline-block;margin:15px 0 20px;padding:0 20px;min-width:160px;height:40px;line-height:40px;text-align:center;color:#fff;font-size:16px;background:#52ade7;border:1px #329bde solid;-webkit-border-radius:4px;}
+
+.list-user {padding:20px 0 0;}
+.list-user span {display:inline-block;margin:0 3px 6px 0;padding:5px 8px;font-size:13px;color:#3c3d48;border:1px #ededed solid;white-space:nowrap;}
+.vitamio {padding:10px 0 0;text-align:center;font-size:12px;color:#c4c4c4;}
+.vitamio img {margin:0 5px;width:30px;height:12px;vertical-align:-2px;}
+.exp {padding: 0 5px 20px 0;text-align: right;font-size: 14px;}
+</style>
+<script type="text/javascript">
+function mulu(name1,id){
+   for(var i = 1;i <= 10;i++){
+		if(document.getElementById(name1+i) != null){
+			if(id == i){
+				if(document.getElementById(name1+i).style.display == "block"){
+				 document.getElementById(name1+i).style.display = "none";
+				 }
+				else{
+				 document.getElementById(name1+i).style.display = "block";
+				 }
+				 
+				 }
+				else{
+				 document.getElementById(name1+i).style.display = "none";
+				}
+		}
+   }    
+}
+</script>
+</head>
+
+<body>
+
+
+<div class="module">
+    <div class="title">无法开启可查看使用数据权限</div>
+    <ul class="list1 list5">
+        <li>
+            <div class="cont">
+                <p>小部分机型无法开启该权限，可到手机设置>安全>可查看使用数据权限的应用>Sherlock>开启权限。同时，也可使用“检查窗口”(App设置>检查窗口)方案代替，该方案将提供更强的效果。</p>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="module">
+    <div class="title">应用无法正常使用</div>
+        <ul class="list1 list5">
+            <li>
+                <div class="cont">
+                    <p>Sherlock适应绝大部分android系统，对于无法正常使用的情况，主要存在以下原因：</p>
+                </div>
+            </li>
+            <li>
+                <div class="cont">
+                    <p>权限缺失:检查悬浮窗(在其他应用之上显示)权限，开启自启动权限，将Sherlock加入手机后台清理白名单</p>
+                </div>
+            </li>
+            <li>
+                <div class="cont">
+                    <p>flyme6用户:在手机设置>应用>Sherlock手机锁定>关闭智能后台，选择为保持后台运行。</p>
+                </div>
+            </li>
+            <li>
+                <div class="cont">
+                    <p>EMUI及Lineage(CM14.1)用户:在手机设置>隐私>受保护的应用>给予Sherlock手机锁定权限</p>
+                </div>
+            </li>
+            <li>
+                <div class="cont">
+                    <p>MIUI用户:神隐模式会影响到Sherlock的正常运行。同时，因小米修改底层，定时任务将有0-5分钟的延迟，任何间隔小于5分钟的任务都将不会执行。</p>
+                </div>
+            </li>
+            <li>
+                <div class="cont">
+                    <p>Xposed框架用户:阻止运行、绿色守护、冰箱等会导致应用无法使用，请检查是否被加入黑名单。</p>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+<div class="module">
+  <div class="title">应用无法卸载</div>
+    <ul class="list1 list5">
+        <li>
+            <div class="cont">
+			  <p>应打开过增强模式，开启了设备管理器权限，请至手机设置>安全>设备管理器>Sherock>取消权限后卸载。</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+ <div class="module">
+  <div class="title">权限问题</div>
+    <ul class="list1 list5">
+        <li>
+            <div class="cont">
+			  <p>Sherlock正常运行需要很多权限，请放心给予！</p>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="module">
+    <div class="title">更多问题</div>
+    <ul class="list1 list5">
+        <li>
+            <div class="cont">
+                <p>如果问题得不到解决，可通过[关于]里的联系方式联系开发者。</p>
+            </div>
+        </li>
+    </ul>
+</div>
+<script>
+var oVer = document.getElementById("ucver");
+var oVertext = document.getElementById("ucver").innerText;
+var oSpeed = ucweb.startRequest("shell.ac_type_tips_text", []);
+//var oSpeed = "hwac";
+oVer.innerText = oVertext.replace("Android","Android " + oSpeed);
+</script> 
+
+</body></html>

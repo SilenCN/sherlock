@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/firstuse_backage">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:id="@+id/loadingTopLayout">
+
+        <TextView
+            android:id="@+id/loadingWelcomeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="119dp"
+            android:text="Hi,欢迎使用Sherlock"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
+            android:visibility="invisible"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/loadingMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/loadingWelcomeTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="57dp"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="20dp"
+            android:text="尝试在利与弊之间\n寻找平衡"
+            android:textColor="#f6efef"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/loadingStartSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/loadingMessage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="103dp"
+            android:background="#00ffffff"
+            android:text="初始化设置➡"
+            android:textColor="#cafdfdfe"
+            android:textSize="16sp"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/loadingLayoutInstall">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="174dp"
+            android:text="安装辅助程序"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#f3e6e6" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView"
+            android:layout_below="@+id/textView"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="40dp"
+            android:text="辅助程序是Sherlock的配套程序，只有在安装了辅助程序之后，Sherlock才能正常运行。"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#f2e2e2" />
+
+        <Button
+            android:id="@+id/loadingInstall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="106dp"
+            android:background="#00ffffff"
+            android:text="安装➡"
+            android:textColor="#c0ffffff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/loadingLayoutSetting">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="模式设置"
+            android:id="@+id/textView4"
+            android:layout_marginLeft="26dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="92dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#e2c3c3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="每种模式对应一套程序白名单,定制个性化需求。"
+            android:id="@+id/textView5"
+            android:layout_marginTop="23dp"
+            android:layout_below="@+id/textView4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="45dp"
+            android:textColor="#e2c3c3" />
+
+        <Button
+            android:id="@+id/loadingAppWhiteList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:background="#00ffffff"
+            android:text="设置➡"
+            android:textColor="#714819f4"
+            android:textSize="14sp"
+            android:layout_below="@+id/textView5"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="强制解锁"
+            android:id="@+id/textView6"
+            android:layout_below="@+id/loadingAppWhiteList"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_marginTop="21dp"
+            android:textColor="#e2c3c3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="设置强制解锁密码后，当遇到紧急情况可输入密码强制解锁。"
+            android:id="@+id/textView7"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/textView6"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_alignStart="@+id/textView5"
+            android:layout_marginRight="45dp"
+            android:textColor="#e2c3c3" />
+
+        <Button
+            android:id="@+id/loadingForceUnLock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"
+            android:text="设置➡"
+            android:textColor="#714819f4"
+            android:textSize="14sp"
+            android:layout_below="@+id/textView7"
+            android:layout_alignLeft="@+id/loadingAppWhiteList"
+            android:layout_alignStart="@+id/loadingAppWhiteList"
+            android:layout_marginTop="19dp" />
+
+        <Button
+            android:id="@+id/loadingIntoMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00ffffff"
+            android:text="进入Sherlock➡"
+            android:textColor="#e6ffffff"
+            android:textSize="18sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="95dp" />
+    </RelativeLayout>
+</RelativeLayout>

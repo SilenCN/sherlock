@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="提醒">
+
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="false"
+            android:key="setting_playEndSound"
+            android:summary="锁定服务结束时播放声音(系统提示音)"
+            android:title="结束提醒" />
+
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="false"
+            android:key="setting_showNotification"
+            android:summary="在定时任务开始前约十分钟显示提醒通知"
+            android:title="定时任务提醒" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="优化">
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="false"
+            android:key="setting_better_accisibility_gettoppackage"
+            android:summary="“可查看使用数据权限”的替代方案，能更加有效得检测前台窗口"
+            android:title="检测窗口" />
+
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="false"
+            android:key="setting_better_unlocksystem"
+            android:summary="检测系统锁屏，当锁屏时服务暂停，开启可能在某些系统上FC"
+            android:title="检测锁屏" />
+
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="false"
+            android:key="setting_better_disablesystembar"
+            android:summary="开启该设置，状态栏将被禁止使用，这意味着在服务开启时，一些基本的操作(状态栏快捷设置等)将无法使用。"
+            android:title="禁用状态栏" />
+
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="false"
+            android:key="setting_better_showDesktopApp"
+            android:summary="开启该设置后，可将桌面启动器加入白名单，同时，Sherlock锁定界面将不会出现，查看使用信息请在桌面添加Sherlock的桌面小部件。另，开启该设置必须启用设备管理器权限！"
+            android:title="开放桌面启动器" />
+
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="false"
+            android:key="setting_better_startAfterUnlock"
+            android:summary="开启该设置，在使用强制解锁10分钟后程序将启动并运行原来的服务。"
+            android:title="重新启动" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="显示">
+
+        <com.wocao.sherlock.Setting.Preferences.EditTextEncryptPreference
+            android:key="setting_display_motto"
+            android:selectAllOnFocus="true"
+            android:singleLine="false"
+            android:summary="在锁定界面显示座右铭，留空不显示"
+            android:title="座右铭" />
+
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="false"
+            android:key="setting_display_Alpha"
+            android:summary="锁定界面透明，替换黑色背景"
+            android:title="锁定界面透明" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="其他" >
+        <Preference
+            android:title="他人控制"
+            android:summary="Sherlock的所有配置修改将会被要求输入他人设置的密码"
+            android:key="setting_control_by_other"/>
+        <Preference
+            android:title="限制解锁"
+            android:summary="限制在某个时间段内的解锁次数"
+            android:key="setting_limit_unlock"/>
+
+        <Preference
+            android:title="卸载"
+            android:summary="解除权限，卸载本应用"
+            android:key="setting_uninstall"
+            />
+
+    </PreferenceCategory>
+</PreferenceScreen>

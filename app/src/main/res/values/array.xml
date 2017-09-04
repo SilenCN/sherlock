@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="open_app_package">
+        <item>com.wocao.sherlockassist</item>
+        <item>com.android.providers.contacts</item>
+        <item>com.android.deskclock</item>
+        <item>com.android.phone</item>
+        <item>com.android.bluetooth</item>
+        <item>com.android.mms</item>
+        <item>com.android.externalstorage</item>
+        <item>com.android.dialer</item>
+        <item>com.android.incallui</item>
+        <item>com.android.service</item>
+        <item>com.android.packageinstaller</item>
+        <item>com.android.providers.telephony</item>
+        <item>com.android.contacts</item>
+        <item>android.airsharing</item>
+        <item>com.miui.securitycenter</item>
+        <item>com.android.server.telecom</item>
+        <item>cn.nubia.applockmanager</item>
+    </string-array>
+    <string-array name="limit_unlock_entry_duration">
+        <item>一天</item>
+        <item>一周</item>
+        <item>一个月</item>
+    </string-array>
+    <string-array name="limit_unlock_entryValues_duration">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="limit_unlock_entry_times">
+        <item>1次</item>
+        <item>2次</item>
+        <item>3次</item>
+        <item>5次</item>
+        <item>8次</item>
+        <item>10次</item>
+        <item>15次</item>
+    </string-array>
+
+    <string-array name="limit_unlock_entryValues_times">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>5</item>
+        <item>8</item>
+        <item>10</item>
+        <item>15</item>
+    </string-array>
+
+</resources>

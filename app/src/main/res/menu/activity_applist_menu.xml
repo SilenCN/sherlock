@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ModeOperate.Activity.AppWhiteList">
+    <item
+        android:id="@+id/activity_applist_menu_search"
+        android:title="搜索"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/activity_applist_menu_help"
+        android:title="帮助"
+        app:showAsAction="never" />
+    <item
+        android:title="全选"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/activity_applist_menu_allcheck_run"
+                android:title="可运行"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/activity_applist_menu_allcheck_open"
+                android:title="可打开"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+    <item
+        android:title="清空"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/activity_applist_menu_uncheck_run"
+                android:title="可运行"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/activity_applist_menu_uncheck_open"
+                android:title="可打开"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+</menu>

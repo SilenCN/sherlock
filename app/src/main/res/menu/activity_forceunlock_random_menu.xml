@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/activity_forceUnlock_randomMenu_use_diy"
+        android:title="自定义密码"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/activity_forceUnlock_randomMenu_show_cipher"
+        android:title="显示密码"
+        android:checked="false"
+        android:checkable="true"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/activity_forceUnlock_randomMenu_use_help"
+        android:title="帮助"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/activity_forceUnlock_randomMenu_reset"
+        android:title="刷新密码"
+        app:showAsAction="always"
+        />
+</menu>

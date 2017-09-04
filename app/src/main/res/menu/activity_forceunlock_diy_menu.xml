@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/activity_forceUnlock_diyMenu_use_random"
+        android:title="使用随机密码"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/activity_forceUnlock_diyMenu_rule"
+        android:title="密码规则"
+        app:showAsAction="never" />
+</menu>

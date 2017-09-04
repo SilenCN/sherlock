@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="取消权限">
+        <Preference
+            android:key="uninstall_cancel_policy"
+            android:title="设备管理器"
+            android:summary="使用过增强模式的用户在卸载本应用前需要取消该权限"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="卸载应用">
+        <Preference
+            android:key="uninstall_assist"
+            android:title="辅助应用"
+            android:summary="辅助应用独立于主程序，需要单独卸载。"/>
+        <Preference
+            android:key="uninstall_sherlock"
+            android:title="主体程序"
+            android:summary="因Android限制，应用无法卸载自身，如果已完成上述步骤，请按照常规方式卸载Sherlock主体程序即可。"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

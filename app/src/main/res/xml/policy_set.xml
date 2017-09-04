@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device-admin>
+
+    <uses-policies>
+
+        <!-- 强行锁定（这里只需要这个） -->
+        <force-lock />
+<!--
+
+        &lt;!&ndash; 清除所有数据（恢复出厂设置） &ndash;&gt;
+        <wipe-data />
+
+        &lt;!&ndash; 重置密码 &ndash;&gt;
+        <reset-password />
+
+        &lt;!&ndash; 限制密码选择 &ndash;&gt;
+        <limit-password />
+
+        &lt;!&ndash; 监控登录尝试 &ndash;&gt;
+        <watch-login />
+-->
+
+    </uses-policies>
+
+</device-admin>

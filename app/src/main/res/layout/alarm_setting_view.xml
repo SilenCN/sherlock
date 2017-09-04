@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/toolbarColor"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+
+        android:layout_height="fill_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/include_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/ShortcutItemContain"
+                app:cardBackgroundColor="#ffffff"
+                app:cardCornerRadius="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="13dp">
+
+
+                <RelativeLayout
+                    android:id="@+id/alarmListItemContain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:id="@+id/timeContain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/alarmSettingStartTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="08:30"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#b54a74f3"
+                            android:textSize="38sp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="10dp"
+                            android:text="--"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#b54a74f3"
+                            android:textSize="38sp" />
+
+                        <TextView
+                            android:id="@+id/ShortcutItemLabelTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="10dp"
+                            android:text="08:30"
+                            android:background="?android:attr/selectableItemBackground"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#b54a74f3"
+                            android:textSize="38sp" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:text="次日"
+                                android:id="@+id/alarmsettingviewNextDayTV"
+                                android:layout_alignParentBottom="true"
+                                android:visibility="invisible"
+                                android:textSize="10sp" />
+
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp">
+
+                            <android.support.v7.widget.AppCompatSpinner
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentEnd="true"
+                                android:id="@+id/alarmSettingModeSelectSpinner"
+                                android:layout_centerInParent="false"
+                                android:layout_centerHorizontal="false"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentBottom="false"
+                                android:layout_alignParentLeft="false"
+                                android:layout_alignParentStart="false"
+                                android:layout_alignParentTop="false"
+                                android:layout_marginTop="10dp" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+<!--                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/alarmSettingSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignTop="@+id/timeContain"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="25dp"
+                        android:checked="true" />-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/layout1"
+                        android:layout_below="@id/timeContain"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="10dp">
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/alarmSettingCB0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/ShortcutItemContain"
+                            android:layout_alignStart="@+id/ShortcutItemContain"
+                            android:layout_below="@+id/ShortcutItemContain"
+                            android:text="每天"
+                            android:checked="true" />
+
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/alarmSettingCB1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/ShortcutItemContain"
+                            android:layout_alignStart="@+id/ShortcutItemContain"
+                            android:layout_below="@+id/ShortcutItemContain"
+                            android:text="周一"
+                            android:checked="true" />
+
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/alarmSettingCB2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/ShortcutItemContain"
+                            android:layout_alignStart="@+id/ShortcutItemContain"
+                            android:layout_below="@+id/ShortcutItemContain"
+                            android:text="周二"
+                            android:checked="true" />
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/alarmSettingCB3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/ShortcutItemContain"
+                            android:layout_alignStart="@+id/ShortcutItemContain"
+                            android:layout_below="@+id/ShortcutItemContain"
+                            android:text="周三"
+                            android:checked="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/layout1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="10dp">
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/alarmSettingCB4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/ShortcutItemContain"
+                            android:layout_alignStart="@+id/ShortcutItemContain"
+                            android:layout_below="@+id/ShortcutItemContain"
+                            android:text="周四"
+                            android:checked="true" />
+
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/alarmSettingCB5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/ShortcutItemContain"
+                            android:layout_alignStart="@+id/ShortcutItemContain"
+                            android:layout_below="@+id/ShortcutItemContain"
+                            android:text="周五"
+                            android:checked="true" />
+
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/alarmSettingCB6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/ShortcutItemContain"
+                            android:layout_alignStart="@+id/ShortcutItemContain"
+                            android:layout_below="@+id/ShortcutItemContain"
+                            android:text="周六"
+                            android:checked="true" />
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/alarmSettingCB7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@+id/ShortcutItemContain"
+                            android:layout_alignStart="@+id/ShortcutItemContain"
+                            android:layout_below="@+id/ShortcutItemContain"
+                            android:text="周日"
+                            android:checked="true" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

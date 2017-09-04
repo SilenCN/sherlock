@@ -1,0 +1,101 @@
+<resources>
+
+    <string name="first_use_title">最初化設置</string>
+    <string name="first_use_tips_text">プログラムが順調に運行でき、お客様の要求に満足できるように、まじめに完成してください。</string>
+
+    <string name="MainActivity_Exit_Message">オフライン？</string>
+    <string name="MainActivity_Exit_button_exit">オフライン</string>
+    <string name="MainActivity_Exit_button_donate">投食</string>
+
+
+    <string name="donate_title">団体を支持</string>
+    <string name="donate_ad_text">応用</string>
+    <string name="donate_alipay_text">寄贈</string>
+    <string name="donate_alipay_count">13132006570</string>
+    <string name="donate_alipay_dialogTV">ワークスペースの「支付宝」号13132006570は携帯に貼りつけ板にコピーしておき、感謝します。</string>
+    <string name="donate_personD_text">人力支持</string>
+	<string name="donate_introduce_text">御支持、ありがとうございまし。以下に方式で助けてくださいよ。
+        \n
+		\n<b>応用をダウンロードする</b>
+		\n無線ネットの環境で、推薦した応用のNetpas云墙及び今日推薦している応用の一つをダウンロードし完成した後Netpas云墙にログインし運行してくれると、うちは2.5元の利益を得ます。もし、お客様は今日推薦している応用の一つをダウンロードしたなら、もう一度ダウンロードするの結構です、Netpas云墙も加速体験を提供します。
+        \n
+		\n<b>寄贈</b>
+		\n「支付宝」号を通して振り替えるのはいいです、QQの担当者に振り替えるのもいいです。
+        \n
+		\n<b>人力支持</b>
+		\nもし、参加し、技術援助をくれたいなら、“人力支持”をクリックして、ワークスペースの担当者に連絡してください。</string>
+    <string name="donate_personD_DialogMasseage">ワークスペースは現在携帯応用領域に努力すると同時に，ゲームを作るつもりですので、相関領域の技術者たち、ぜひ連絡してください。</string>
+    
+    <string name="donate_alipay_openAlipay">「支付宝」をログインする</string>
+
+    <string name="CipherReset_NotUseCipher">強制にアンロックする功能を中止</string>
+    <string name="CipherReset_Reset">修正</string>
+    <string name="CipherReset_ResetFailed">暗号修正失敗</string>
+    <string name="CipherReset_ResetSuccess">暗号修正成功</string>
+    <string name="CipherReset_CipherNotSame">暗号一致ではない</string>
+    <string name="CipherReset_IntentIlligel">違法なページ転換</string>
+
+    <string name="AppCanOpen_loading">ローディング中…</string>
+    <string name="AppCanOpen_loadingMessage">応用リストをローディング中、お待ちください…</string>
+
+    <string name="apptool_policyToAccessData">データを見る権利がある</string>
+    <string name="apptool_policyToAccessDataMessage">谷歌APIの問題で、運行できる応用及び利用できる応用の順調に運行するように、Android 5.0及び以上の設備は本応用に権利を与えてください。
+</string>
+    <string name="apptool_policyToAccessDataAgree">許可</string>
+    <string name="apptool_relifeDeviceAdmin">設備管理器を起動</string>
+    <string name="apptool_relifeDeviceAdminMessage">本応用は運行権利を与えない、順調に運行するように設備管理器を起動してください。</string>
+    <string name="apptool_relifeDeviceAdminAgree">起動</string>
+    <string name="apptool_installAssist">補助プログラムを設置</string>
+    <string name="apptool_installAssistMessage">補助プログラムを設置しない状態で、クリックして設置してください。</string>
+    <string name="apptool_installAssistInstall">設置</string>
+
+    <string name="FirstUse_installed">設置完成</string>
+    <string name="FirstUse_policyAlarm">権利注意</string>
+    <string name="FirstUse_policyAlarmKnown">理解した</string>
+
+    <string name="HelpAndAboutActivity_Title_about">その他</string>
+    <string name="HelpAndAboutActivity_Title_downloadApp">応用</string>
+
+    <string name="InputCipher_next">次に</string>
+    <string name="InputCipher_inputError">暗号が間違いので、もう一度入力してください。</string>
+
+    <string name="killpoccesserve_openApping">オープン中、お待ちください</string>
+    <string name="killpoccesserve_hour">時</string>
+    <string name="killpoccesserve_day">日</string>
+    <string name="killpoccesserve_min">分</string>
+    <string name="killpoccesserve_scend">秒</string>
+    
+    <string name="MainActivity_Menu_donate">投食</string>
+    <string name="MainActivity_Menu_AppCanRun">運行できるリスティング</string>
+    <string name="MainActivity_Menu_AppCanOpen">オープンできるリスティング</string>
+    <string name="MainActivity_Menu_ForceStop">強制にアンロックする設置</string>
+    <string name="MainActivity_Menu_About">その他</string>
+    
+    <string name="setTime_OpenService">起用サービス</string>
+    <string name="setTime_TimeError">設置した時間は今の時間に達しない或いは間違い
+</string>
+    <string name="setTime_TimeLower">今の時間より早い</string>
+    <string name="setTime_GoOn">継続を確認</string>
+    <string name="setTime_GoNoMessage">設置した時間は%sです、起用サービス
+をクリックしてください！</string>
+    <string name="setTime_GoOnCancel">キャンセル</string>
+    <string name="setTime_GoOnOK">確認</string>
+    <string name="setTime_ReCheckTitle">もう一度確認</string>
+    <string name="setTime_ReCheckMessage">違い操作を避けるように、日数と時間数を確認して、一日に足りないないのは0に記す、一時間に足りないのは0に記す。</string>
+    <string name="setTime_Input_error">操作は間違い？</string>
+    <string name="setTime_Input_void">何も入力しないから、オープンできない！</string>
+
+    <string name="manifests_inputCipher_lable">暗号を入力</string>
+    <string name="manifests_setTime_lable">時間を設置</string>
+    <string name="manifests_firstuse_lable">初始化設置</string>
+    <string name="manifests_resetcipher_lable">新たな暗号</string>
+
+    <string name="setTime_ReCheck_EditHint">日数+時間数=</string>
+    <string name="CipherReset_ForceUnlockSwitch">強制にアンロック</string>
+    <string name="CipherReset_InputNewCipher">新たな暗号：</string>
+    <string name="CipherReset_ReInputNewCipher">暗号を重複:</string>
+    <string name="CipherInput_inputCipher">暗号を入力</string>
+    <string name="app_name">Sherlock手机锁定</string>
+
+
+</resources>

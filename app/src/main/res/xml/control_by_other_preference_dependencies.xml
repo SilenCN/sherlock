@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+        android:defaultValue="false"
+        android:key="control_by_other_switch"
+        android:summary="开启后，Sherlock将根据具体配置在修改相应模块时要求输入密码"
+        android:title="开启他人控制" />
+    <com.wocao.sherlock.Setting.Preferences.EditTextEncryptPreference
+        android:dialogMessage="密码仅包含数字与字母"
+        android:digits="@string/editText_inputdigits"
+        android:key="control_by_other_password"
+        android:summary="控制密码，修改相应设置时必须输入该密码"
+        android:enabled="false"
+        android:title="密码" />
+
+    <PreferenceCategory
+        android:key="control_by_other_dependency"
+        android:title="配置"
+        android:enabled="false"
+        >
+        <Preference
+            android:key="control_by_other_admin_policy"
+            android:summary="开启设备管理器权限将使得Sherlock更难被卸载"
+            android:title="开启设备管理器" />
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="true"
+            android:key="control_by_other_modify_setting_ban"
+            android:summary="修改设置必须要求输入密码"
+            android:title="禁止修改设置" />
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="true"
+            android:key="control_by_other_modify_whitelist_ban"
+            android:summary="修改多模式配置时必须输入密码(不包括新建模式)"
+            android:title="禁止修改多模式" />
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="true"
+            android:key="control_by_other_modify_alarm_ban"
+            android:summary="修改定时任务时必须输入密码(不包括新建定时任务)"
+            android:title="禁止修改定时任务" />
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="true"
+            android:key="control_by_other_modify_unlock_key_ban"
+            android:summary="在查看和修改强制解锁密码时必须输入密码"
+            android:title="禁止查看强制解锁密码" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

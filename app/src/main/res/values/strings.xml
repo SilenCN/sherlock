@@ -1,0 +1,153 @@
+<resources>
+
+    <string name="first_use_title">初始化设置</string>
+    <string name="first_use_tips_text">为了保证程序正常运行及满足您的需求，请您认真完成！</string>
+
+    <string name="MainActivity_Exit_Message">是否退出？</string>
+    <string name="MainActivity_Exit_button_exit">退出</string>
+    <string name="MainActivity_Exit_button_donate">投食</string>
+
+    <string name="donate_title">支持团队</string>
+    <string name="donate_ad_text">下载应用</string>
+    <string name="donate_alipay_text">捐赠</string>
+    <string name="donate_alipay_count">13132006570</string>
+    <string name="donate_alipay_dialogTV">我们的支付宝账号(13132006570)已复制至手机粘贴板，感谢您的支持。</string>
+    <string name="donate_personD_text">人员支持</string>
+    <string name="donate_introduce_text">感谢您的支持，您可以通过以下方式帮助我们。
+        \n
+		\n<b>下载应用</b>
+		\n您可以通过下载重点推荐的应用Netpas云墙以及今日推荐中的任意一个应用，并在两个应用都安装完成后打开Netpas云墙运行一次并保留24小时来为我们带来2.5元的应用推广收益。而如果您原本就安装有今日推荐中包含的应用则可不必再一次下载安装，Netpas云墙也可以为您已安装的应用带来网络加速效果。
+        \n
+		\n<b>捐赠</b>
+		\n您可以通过支付宝直接转账给我们，也可以通过QQ转账给粉丝群的群主。
+        \n
+		\n<b>人员支持</b>
+		\n如果您愿意加入我们，为我们的工作提供技术帮助，可以直接点击“人员支持”的按钮添加工作室负责人为好友。</string>
+    <string name="donate_personD_DialogMasseage">工作室目前涉足手机应用领域，还希望能制作游戏，所以需要更多的程序猿·设计狮·美工·音效师的加入，有意请联系我们！</string>
+
+    <string name="donate_alipay_openAlipay">打开支付宝</string>
+
+    <string name="CipherReset_NotUseCipher">已停用强制解锁功能</string>
+    <string name="CipherReset_Reset">修改</string>
+    <string name="CipherReset_ResetFailed">密码修改失败</string>
+    <string name="CipherReset_ResetSuccess">密码修改成功,已开启强制解锁</string>
+    <string name="CipherReset_CipherNotSame">密码不一致</string>
+    <string name="CipherReset_IntentIlligel">非法跳转</string>
+
+    <string name="AppCanOpen_loading">加载中...</string>
+    <string name="AppCanOpen_loadingMessage">正在加载应用，请稍后...</string>
+
+    <string name="apptool_policyToAccessData">有权查看数据</string>
+    <string name="apptool_policyToAccessDataMessage">因谷歌API问题，为了保证白名单和强制解锁功能的正常运行，Android 5.0及其以上的设备必须赋予本应用可查看使用数据的权限！\n\n\n某些系统无法使用该方案或者该方案效果不佳，可启用通过无障碍服务实现的“检测窗口”方案。</string>
+    <string name="apptool_policyToAccessDataMessage_use_accessibility">使用检查窗口</string>
+    <string name="apptool_policyToAccessDataAgree">允许</string>
+    <string name="apptool_relifeDeviceAdmin">激活设备管理器</string>
+    <string name="apptool_relifeDeviceAdminMessage">增强模式与"开放启动器"选项需要获取设备管理器权限，为了程序正常运行，请激活设备管理器！\n\n注意：开启之后当卸载本程序时请通过程序的设置(Sherlock的)->卸载(最下面)->按照步骤卸载</string>
+    <string name="apptool_relifeDeviceAdminAgree">去激活</string>
+    <string name="apptool_installAssist">安装辅助程序</string>
+    <string name="apptool_installAssistMessage">检测到您未安装辅助程序，点击即可安装。</string>
+    <string name="apptool_installAssistInstall">安装</string>
+
+    <string name="FirstUse_policyAlarm">权限提醒</string>
+    <string name="FirstUse_policyAlarmKnown">知道了</string>
+
+    <string name="HelpAndAboutActivity_Title_about">关于</string>
+    <string name="HelpAndAboutActivity_Title_downloadApp">下载应用</string>
+
+    <string name="InputCipher_next">下一步</string>
+    <string name="InputCipher_inputError">密码错误,请重新输入</string>
+
+    <string name="killpoccesserve_openApping">正在打开，请等待！！</string>
+    <string name="killpoccesserve_hour">时</string>
+    <string name="killpoccesserve_day">天</string>
+    <string name="killpoccesserve_min">分钟</string>
+    <string name="killpoccesserve_scend">秒</string>
+
+    <string name="MainActivity_Menu_donate">投食</string>
+    <string name="MainActivity_Menu_AppCanRun">白名单</string>
+    <string name="MainActivity_Menu_AppCanOpen">可打开列表</string>
+    <string name="MainActivity_Menu_ForceStop">强制解锁密码</string>
+    <string name="MainActivity_Menu_About">关于</string>
+
+    <string name="setTime_OpenService">开启服务</string>
+    <string name="setTime_TimeError">设置时间早于当前时间或设置错误！</string>
+    <string name="setTime_TimeLower">时间早于当前时间</string>
+    <string name="setTime_GoOn">确认继续？</string>
+    <string name="setTime_GoNoMessage">您设置的时间为%s</string>
+    <string name="setTime_GoOnCancel">取消</string>
+    <string name="setTime_GoOnOK">继续</string>
+    <string name="setTime_ReCheckTitle">再次确认</string>
+    <string name="setTime_ReCheckMessage">为了避免您误操作，请输入前一弹窗显示的天数与小时数之和，不超过一天则按天数=0计算，不超过一小时则按小时数=0计算。</string>
+    <string name="setTime_Input_error">误操作了么？</string>
+    <string name="setTime_Input_void">啥都没输就不开！</string>
+
+    <string name="manifests_inputCipher_lable">输入密码</string>
+    <string name="manifests_setTime_lable">设置时间</string>
+    <string name="manifests_firstuse_lable">初始化应用</string>
+    <string name="manifests_resetcipher_lable">新密码</string>
+
+    <string name="setTime_ReCheck_EditHint">天数+小时数=</string>
+    <string name="CipherReset_ForceUnlockSwitch">强制解锁</string>
+    <string name="CipherReset_InputNewCipher">新密码:</string>
+    <string name="CipherReset_ReInputNewCipher">重复密码:</string>
+    <string name="CipherInput_inputCipher">输入密码</string>
+    <string name="app_name">Sherlock手机锁定</string>
+    <string name="MainActivity_Title">Sherlock手机锁定</string>
+
+    <string name="editText_inputdigits">1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM_</string>
+
+    <!--
+    Below is new strings added to activity
+    -->
+
+    <string name="resetCipher_checkCipherIsIlligel">不符合密码规则</string>
+    <string name="resetCipher_reviewCipherReg">查看密码规则</string>
+    <string name="resetCipher_CipherRegTitle">密码规则</string>
+    <string name="resetCipher_CipherReg">密码限字母、数字和下划线，必须同时包含字母和数字，且位数不小于15，密码相同字符不能连续出现4次及以上。</string>
+
+    <string name="updata_assist_title">升级辅助程序</string>
+    <string name="updata_assist_message">当前辅助程序可更新，点击升级即可！</string>
+    <string name="updata_assist_install">升级</string>
+    <string name="firstUse_modify">修改</string>
+    <string name="updata_title">更新</string>
+    <string name="updata_download">更新</string>
+    <string name="updata_ignore">忽略</string>
+    <string name="updata_nextTime">下次提醒</string>
+    <string name="MainActivity_StrengthenMod_Dialog_title">增强模式</string>
+    <string name="MainActivity_StrengthenMod_Dialog_message">即将进入增强模式，在该模式下，锁屏期间将无法亮屏，请确保开启服务之前，进入飞行模式并没有可运行的闹钟程序。</string>
+    <string name="MainActivity_StrengthenMod_Dialog_enter">进入</string>
+    <string name="MainActivity_StrengthenMod_entered">已进入增强模式</string>
+    <string name="MainActivity_StrengthenMod_exit">已退出增强模式</string>
+
+    <string name="MainActivity_AlarmMod_Dialog_title">定时任务</string>
+
+    <string name="setTime_strengthenDialogAlarm_title">警示</string>
+    <string name="setTime_strengthenDialogAlarm_message">当前处于增强模式下，开启服务后在您设定的时间内手机将保持灭屏，您不可使用强制解锁功能，不可打开任何应用。请确保手机已进入飞行模式并无可运行的闹钟!</string>
+    <string name="modedisplay_strengthenDialogAlarm_message">在增强模式下，开启服务后在您设定的时间内手机将保持灭屏，您不可使用强制解锁功能，不可打开任何应用。请确保手机进入飞行模式并无可运行的闹钟及音乐等程序等!\n增强模式不可编辑</string>
+
+    <string name="setTime_strengthenDialogAlarm_known">开启</string>
+    <string name="setTime_strengthenDialogAlarm_cancle">取消</string>
+
+    <string name="AppWhiteList_help">帮助</string>
+    <string name="AppWhileList_help_known">知道了</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="accessibility_service_description">[检测窗口]采用无障碍服务获取手机前台窗口(包括悬浮窗、Dialog等)\n\n使用该服务，可以提供比“有权查看使用数据情况的应用”方案更加有效的服务。\n\n该方案可以解决:\n\t安全模式\n\tMIUI及EMUI等多任务界面杀死锁定服务\n\t部分rom无法开启有权查看使用数据权限\n等问题。\n\n使用该方案可能造成的影响:\n\t某些不在白名单的应用的弹窗将被屏蔽，包括系统确认弹窗、在线支付弹窗等</string>
+    <string name="accessibility_service_label">Sherlock 检测窗口</string>
+
+    <string name="accessibility_dialog_title">开启权限</string>
+    <string name="accessibility_dialog_message">检测到您开启了“检测窗口”选项，但并没有开启无障碍权限，请开启！</string>
+    <string name="accessibility_dialog_ok">开启</string>
+    <string name="accessibility_dialog_uncheck">取消该选项</string>
+    <string name="accessibility_dialog_cancel">取消</string>
+
+    <string name="update_check_no_new_version">无新版本</string>
+    <string name="activity_random_cipher_hint">您的随机解锁密码为：</string>
+    <string name="activity_random_cipher_reset">更换密码</string>
+    <string name="title_activity_uninstall">UninstallActivity</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="AppWidgetServiceStateNotRunning">服务未开启</string>
+</resources>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wocao.sherlock"
+    android:sharedUserId="tk.Silen.LockPhone">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BIND_DEVICE_ADMIN" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission xmlns:tools="http://schemas.android.ssssscom/tools"
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+
+    <application
+        android:name=".FunctionApplication"
+        android:allowBackup="true"
+        android:configChanges="locale"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".leading" />
+        <activity
+            android:name=".ForceUnlock.ResetCipher"
+            android:label="@string/manifests_resetcipher_lable"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ModeOperate.Activity.AppWhiteList"
+            android:label="@string/MainActivity_Menu_AppCanRun"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ForceUnlock.InputCipher"
+            android:label="@string/manifests_inputCipher_lable"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HelpAndAboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ExitApplication"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="ExitApplication"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Alarm.AlarmListActivity" />
+        <activity android:name=".Alarm.AlarmSettingActivity" />
+
+        <service android:name=".Alarm.AlarmStartService" />
+        <service android:name=".Alarm.AlarmAutoStartCheck" />
+        <service android:name=".ForceUnlock.forceStopService" />
+        <service android:name=".Alarm.Notification.AlarmNotificationAutoStartService" />
+        <service android:name=".Alarm.Notification.AlarmNotificationStartService" />
+
+        <activity
+            android:name=".Main.MainActivity"
+            android:label="Sherlock"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".BootBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="android.intent.action.DATA_ACTIVITY" />
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+                <action android:name="android.intent.action.DATA_STATE" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.server.checkin.FOTA_CANCEL" />
+                <action android:name="android.intent.action.MEDIABUTTON" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.MEDIA_SCANNER_STARTED" />
+                <action android:name="android.intent.action.MEDIA_SCANNER_FINISHED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIME_TICK" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="android.intent.action.SERVICE_STATE" />
+                <action android:name="android.intent.action.SIG_STR" />
+                <action android:name="android.intent.category.ALTERNATIVE" />
+                <action android:name="android.intent.action.SETTINGS" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".Alarm.AlarmActionReceiver"
+
+            >
+            <intent-filter>
+                <action android:name="Sherlock_Alarm_Action" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".Alarm.Notification.AlarmNotificationActionReceiver"
+            
+            >
+            <intent-filter>
+                <action android:name="Sherlock_Alarm_Notification_Action" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".adminReceiver"
+            android:description="@string/app_name"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/policy_set" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".Setting.SettingActivity"
+            android:label="设置" />
+        <activity android:name=".Shortcut.Activity.ShortcutsActivity" />
+
+        <service
+            android:name=".Accessibility.DetectionService"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/detection_service_config" />
+        </service>
+
+        <activity android:name=".ForceUnlock.RandomCipherActivity" />
+        <activity
+            android:name=".Setting.Uninstall.UninstallActivity"
+            android:label="@string/title_activity_uninstall"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Setting.ControlByOther.ControlByOtherSettingActivity" />
+        <activity android:name=".Setting.LimitUnlock.LimitUnlockSettingActivity" />
+
+        <receiver android:name=".AppWidget.ServiceState.ServiceStateWidget">
+            <intent-filter>
+                <action android:name="com.wocao.sherlock.AppWidget.ServiceState.UpdateAll" />
+                <action android:name="com.wocao.sherlock.AppWidget.ServiceState.ModeName" />
+                <action android:name="com.wocao.sherlock.AppWidget.ServiceState.TimeDisplay" />
+                <action android:name="com.wocao.sherlock.AppWidget.ServiceState.Unlock" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_ENABLED"/>
+                <action android:name="android.appwidget.action.APPWIDGET_DISABLED"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/service_state_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".CoreService.CoreService"
+            android:enabled="true"
+            android:exported="true"></service>
+    </application>
+
+</manifest>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/toolbarColor"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/include_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff">
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/CipherResetSwitchCompatUseSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:checked="true"
+            android:text="@string/CipherReset_ForceUnlockSwitch"
+            android:textColor="@color/toolbarColor" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/CipherInputEditLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <EditText
+                        android:id="@+id/CipherInputEditText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="@string/CipherReset_InputNewCipher"
+                        android:singleLine="true"
+                        android:textSize="16dp"
+                        android:inputType="textWebPassword"
+                        android:digits="@string/editText_inputdigits" />
+
+                    <TextView
+                        android:id="@+id/CipherInputNnmCountTV1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:paddingRight="2dp"
+                        android:text="Small Text"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="10dp"
+
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="220dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/CipherInputEditLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <EditText
+                        android:id="@+id/CipherInputEditText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="@string/CipherReset_ReInputNewCipher"
+                        android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:textSize="16dp"
+                        android:digits="@string/editText_inputdigits" />
+
+                    <TextView
+                        android:id="@+id/CipherInputNnmCountTV2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:paddingRight="2dp"
+                        android:text="Small Text"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="10dp"
+
+                        />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resetCipher_reviewCipherReg"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="false"
+            android:layout_marginBottom="30dp"
+            android:textColor="#2e1e1d1d"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/recetCipherReviewGegTV"
+            android:textSize="13sp" />
+    </RelativeLayout>
+</LinearLayout>

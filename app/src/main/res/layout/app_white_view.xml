@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/toolbarColor"
+	android:fitsSystemWindows="true">
+
+<LinearLayout
+	android:layout_height="match_parent"
+	android:layout_width="match_parent"
+	android:orientation="vertical"
+	android:background="#fdfff7"
+	>
+
+
+	<include
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		layout="@layout/include_toolbar" />
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:background="#fdfff7"
+		android:orientation="vertical">
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="#fdfff7"
+			android:gravity="end">
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="可运行"
+				android:textSize="10sp"
+				android:layout_marginRight="10dp" />
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="可打开"
+				android:layout_marginRight="13dp"
+				android:textSize="10sp" />
+		</LinearLayout>
+		<ListView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:id="@+id/AppWhiteViewListView"
+			android:paddingBottom="20dp" />
+
+	</LinearLayout>
+
+</LinearLayout>
+
+</LinearLayout>

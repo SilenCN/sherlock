@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+        android:defaultValue="false"
+        android:key="limit_unlock_switch"
+        android:summary="开启后，Sherlock将按照您的设置限制强制解锁次数"
+        android:title="开启限制解锁" />
+
+    <PreferenceCategory
+        android:key="limit_unlock_dependency"
+        android:title="配置"
+        android:enabled="false">
+        <com.wocao.sherlock.Setting.Preferences.ListEncryptPreference
+            android:key="limit_unlock_duration"
+            android:title="时间段"
+            android:summary="设置限制解锁的时间段"
+            android:defaultValue="0"
+            android:entries="@array/limit_unlock_entry_duration"
+            android:entryValues="@array/limit_unlock_entryValues_duration"
+            />
+
+        <com.wocao.sherlock.Setting.Preferences.ListEncryptPreference
+            android:key="limit_unlock_times"
+            android:title="次数"
+            android:summary="设置该时间段内允许解锁的次数"
+            android:defaultValue="1"
+            android:entryValues="@array/limit_unlock_entryValues_times"
+            android:entries="@array/limit_unlock_entry_times"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

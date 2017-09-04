@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorAccent">@color/toolbarColor</item>
+        <item name="colorPrimary">@color/toolbarColor</item>
+        <item name="android:colorAccent">@color/toolbarColor</item>
+        <item name="android:navigationBarColor">@color/toolbarColor</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="NavigationTextStyle">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gainsboro</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>
