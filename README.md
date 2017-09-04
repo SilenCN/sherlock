@@ -10,4 +10,4 @@ Sherlock手机锁定具有以下特性：
 
 Sherlock下载地址：[酷安市场](https://www.coolapk.com/apk/com.wocao.sherlock)
 
-目前，因项目的特殊性，**禁止一切形式的复制、分发、修改与使用**。
+目前，因项目的特殊性，**禁止一切形式的复制、分发、修改、编译与使用**。
