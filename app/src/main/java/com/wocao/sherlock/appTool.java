@@ -41,24 +41,6 @@ import java.util.regex.Pattern;
 public class appTool {
 
     public static Context context;
-    public static DevicePolicyManager policyManager;
-    public static ComponentName componentName;
-
-
-
-    /*public boolean checkOverlayPermission(Context context, FragmentManager fragmentManager){
-
-        if (Build.VERSION.SDK_INT>19){
-            if (!getCanDrawOverlay(context)){
-                new OverlayPermissionDialog(context).show(fragmentManager,null);
-                return false;
-            }else {
-                return true;
-            }
-        }
-        return true;
-    }
-    */
 
     public static String getLanguageCode(Context context) {
         Locale locale = context.getResources().getConfiguration().locale;

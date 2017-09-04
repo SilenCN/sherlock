@@ -1,15 +1,12 @@
 package com.wocao.sherlock.Setting;
 
-import android.app.FragmentManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.wocao.sherlock.AESUtils;
 import com.wocao.sherlock.Assist.AssistUtils;
 import com.wocao.sherlock.Permission.PolicyAdminUtils;
-import com.wocao.sherlock.appTool;
-import com.wocao.sherlock.checkapp;
+
 
 import java.util.Map;
 

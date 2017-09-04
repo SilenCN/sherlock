@@ -15,8 +15,6 @@ import com.wocao.sherlock.Assist.AssistUtils;
 import com.wocao.sherlock.Permission.PolicyAdminUtils;
 import com.wocao.sherlock.R;
 import com.wocao.sherlock.adminReceiver;
-import com.wocao.sherlock.appTool;
-import com.wocao.sherlock.checkapp;
 
 
 /**

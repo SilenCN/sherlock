@@ -12,7 +12,7 @@ public class adminReceiver extends DeviceAdminReceiver {
         super.onReceive(context, intent);
         System.out.println("onreceiver");
     }
-//t
+
     @Override
     public void onEnabled(Context context, Intent intent) {
         System.out.println("激活使用");
