@@ -12,12 +12,16 @@
                 android:id="@+id/drawerIDModeOperate"
                 android:icon="@drawable/ic_whitelist"
                 android:title="模式设置" />
-
             <item
+                android:id="@+id/drawerIDPlugIn"
+                android:icon="@drawable/plug_in"
+                android:title="插件管理"/>
+
+<!--            <item
                 android:id="@+id/drawerIDShortcuts"
                 android:icon="@drawable/ic_header_ico_shortcut"
                 android:title="Shortcuts"
-                android:visible="true" />
+                android:visible="true" />-->
             <item
                 android:id="@+id/drawerIDSetting"
                 android:icon="@drawable/ic_nav_setting"

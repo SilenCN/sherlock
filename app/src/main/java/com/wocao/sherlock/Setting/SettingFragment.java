@@ -1,6 +1,7 @@
 package com.wocao.sherlock.Setting;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -11,11 +12,13 @@ import com.wocao.sherlock.Accessibility.AccessbilityTool;
 import com.wocao.sherlock.Alarm.Notification.AlarmNotificationOperate;
 import com.wocao.sherlock.ControlByOther.ControlType;
 import com.wocao.sherlock.ControlByOther.Presenter.ControlByOtherDialogManager;
+import com.wocao.sherlock.Main.MainActivity;
 import com.wocao.sherlock.Permission.PolicyAdminUtils;
 import com.wocao.sherlock.R;
 import com.wocao.sherlock.Setting.ControlByOther.ControlByOtherSettingActivity;
 import com.wocao.sherlock.Setting.LimitUnlock.LimitUnlockSettingActivity;
 import com.wocao.sherlock.Setting.Uninstall.UninstallActivity;
+import com.wocao.sherlock.Shortcut.Activity.ShortcutsActivity;
 
 /**
  * Created by 10397 on 2016/3/24.
@@ -25,6 +28,7 @@ public class SettingFragment extends PreferenceFragment {
     CheckBoxPreference accessibilityCP;
     CheckBoxPreference notificationCP;
     CheckBoxPreference showDesktopCP;
+    Preference shortcutP;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +94,17 @@ public class SettingFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 startActivity(new Intent(getActivity(), LimitUnlockSettingActivity.class));
+                return false;
+            }
+        });
+        shortcutP=findPreference("setting_quick_shortcut");
+        if (Build.VERSION.SDK_INT<25){
+            shortcutP.setEnabled(false);
+        }
+        shortcutP.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent().setClass(getActivity(), ShortcutsActivity.class));
                 return false;
             }
         });

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="快捷">
+
+    <Preference
+        android:key="setting_quick_shortcut"
+        android:title="Shortcuts"
+        android:summary="Shortcut设置，用于在桌面快速启动预设任务" />
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="提醒">
 
         <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
