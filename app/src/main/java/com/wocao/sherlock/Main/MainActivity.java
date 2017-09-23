@@ -1,48 +1,27 @@
 package com.wocao.sherlock.Main;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Vibrator;
-import android.support.annotation.NonNull;
+import android.provider.MediaStore;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.wocao.sherlock.AESUtils;
-import com.wocao.sherlock.Accessibility.AccessbilityTool;
 import com.wocao.sherlock.Alarm.AlarmListActivity;
-import com.wocao.sherlock.AppConfig;
-import com.wocao.sherlock.Assist.AssistUtils;
 import com.wocao.sherlock.ControlByOther.ControlType;
 import com.wocao.sherlock.ControlByOther.Presenter.ControlByOtherDialogManager;
 import com.wocao.sherlock.CoreService.CoreService;
@@ -53,26 +32,21 @@ import com.wocao.sherlock.ModeOperate.Model.LockMode;
 import com.wocao.sherlock.ModeOperate.Server.InitMode;
 import com.wocao.sherlock.ModeOperate.View.ModeListDisplayDialog;
 import com.wocao.sherlock.ModeOperate.View.ModeSelectDialog;
-import com.wocao.sherlock.Permission.OverlayPermissionUtils;
 import com.wocao.sherlock.Permission.PermissionUtils;
 import com.wocao.sherlock.Permission.PolicyAdminUtils;
-import com.wocao.sherlock.Permission.UsageStatsUtils;
 import com.wocao.sherlock.R;
 import com.wocao.sherlock.Setting.SettingActivity;
 import com.wocao.sherlock.Setting.SettingUtils;
-import com.wocao.sherlock.Shortcut.Activity.ShortcutsActivity;
 import com.wocao.sherlock.Shortcut.View.OnDialogResultListener;
 import com.wocao.sherlock.Shortcut.View.ShortcutReCheckDialog;
 import com.wocao.sherlock.MaterialDesign.StatusBarUtils;
+import com.wocao.sherlock.TestActivity;
 import com.wocao.sherlock.Widget.CircleWidget;
-import com.wocao.sherlock.Widget.WrapContentHeightViewPager;
 import com.wocao.sherlock.appTool;
 import com.wocao.sherlock.leading;
 import com.wocao.sherlock.Update.UpdateUtils;
 
 import java.io.File;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -82,16 +56,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SharedPreferences sp;
     long timeToFinish = 0l;
     CircleWidget BTStart;
-    boolean isService = false;
-    long time = 0;
-    View view;
-    boolean SnackBarIsShowing = false;
 
-    MenuItem menuItemStrengthen;
     MenuItem menuItemAlarm;
 
-    long dateSetting = 0l, delta = 0l;
-    int countDay = 0, countHour = 0;
 
     DataSetting dataSetting = new DataSetting();
 
@@ -125,8 +92,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, mToolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, mToolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -186,6 +152,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         shortCutStart();
 
         SettingUtils.updatePreferences(this);
+        startActivity(new Intent(this, TestActivity.class));
+
     }
 
     private void StartService() {
@@ -204,31 +172,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ShortcutReCheckDialog reCheckDialog = new ShortcutReCheckDialog(timeString(dataSetting).trim(), dataSetting.getModeId());
             reCheckDialog.show(getSupportFragmentManager(), null);
             reCheckDialog.setOnDialogResultListener(new OnShortcutCheckDialogListener());
-        }
-    }
-
-    class strengthenModDialog extends DialogFragment {
-
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setMessage(R.string.MainActivity_StrengthenMod_Dialog_message);
-            builder.setTitle(R.string.MainActivity_StrengthenMod_Dialog_title);
-            builder.setPositiveButton(R.string.MainActivity_StrengthenMod_Dialog_enter, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    try {
-                        //   if (new appTool().checkDeviceAdmin(MainActivity.this, getSupportFragmentManager(), true)) {
-                        //      Toast.makeText(getActivity(), getResources().getString(R.string.MainActivity_StrengthenMod_entered), Toast.LENGTH_SHORT).show();
-                        //      menuItemStrengthen.setIcon(R.mipmap.strengthen_true);
-                        //   }
-                    } catch (Exception e) {
-                        Toast.makeText(getActivity(), "error", Toast.LENGTH_LONG).show();
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return builder.create();
         }
     }
 
@@ -428,93 +371,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-/*
-    class dialog extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // TODO: Implement this method
-            super.onCreateDialog(savedInstanceState);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle(R.string.setTime_GoOn);
-            builder.setMessage(String.format(getResources().getString(R.string.setTime_GoNoMessage), new Object[]{timeCalculate(delta / 1000)}));
-            builder.setNegativeButton(R.string.setTime_GoOnCancel, null);
-
-            builder.setPositiveButton(R.string.setTime_GoOnOK, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface p1, int p2) {
-                            if (countDay * 24 + countHour >= 1) {
-                                new dialogReCheck().show(getSupportFragmentManager(), null);
-                            } else {
-                                if (AccessbilityTool.checkAccessibilityWithDialog(MainActivity.this, getSupportFragmentManager()) || (!AccessbilityTool.isUseAccessibility(MainActivity.this) && UsageStatsUtils.needPermissionForBlocking(MainActivity.this, getSupportFragmentManager())))
-
-                                    if (PolicyAdminUtils.checkDeviceAdmin(MainActivity.this, getSupportFragmentManager())) {// 判断是否有权限(激活了设备管理器)
-                                        if (AppConfig.ignoreDeviceAdmin) {
-                                            startLockService(dateSetting);
-                                        } else {
-                                            showStrengthenAlarmDialog();
-                                        }
-                                    }
-                            }
-                        }
-                    }
-            );
-            return builder.create();
-        }
-    }
-
-    class dialogReCheck extends DialogFragment {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // TODO: Implement this method
-            super.onCreateDialog(savedInstanceState);
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setTitle(R.string.setTime_ReCheckTitle);
-            builder.setMessage(R.string.setTime_ReCheckMessage);
-            View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.set_time_recheck_dialog_view, null);
-            final EditText edit = (EditText) view.findViewById(R.id.setTimerecheckEditView);
-            final TextView tv = (TextView) view.findViewById(R.id.setTimerecheckFocusTV);
-            //  tv.requestFocus();
-            builder.setView(view);
-            builder.setNegativeButton(R.string.setTime_GoOnCancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface p1, int p2) {
-
-                }
-            });
-
-            builder.setPositiveButton(R.string.setTime_GoOnOK, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface p1, int p2) {
-                            tv.requestFocus();
-                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.hideSoftInputFromWindow(MainActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-                            imm.showSoftInput(tv, InputMethodManager.SHOW_FORCED);
-
-                            if (edit.getText() != null & !edit.getText().toString().equals("")) {
-                                if (countDay + countHour == Integer.parseInt(edit.getText().toString())) {
-                                    if (AccessbilityTool.checkAccessibilityWithDialog(MainActivity.this, getSupportFragmentManager()) || (!AccessbilityTool.isUseAccessibility(MainActivity.this) && UsageStatsUtils.needPermissionForBlocking(MainActivity.this, getSupportFragmentManager())))
-
-                                        if (PolicyAdminUtils.checkDeviceAdmin(MainActivity.this, getSupportFragmentManager())) {// 判断是否有权限(激活了设备管理器)
-                                            if (AppConfig.ignoreDeviceAdmin) {
-                                                startLockService(dateSetting);
-                                            } else {
-                                                showStrengthenAlarmDialog();
-                                            }
-                                        }
-                                } else {
-                                    Toast.makeText(MainActivity.this, R.string.setTime_Input_error, Toast.LENGTH_SHORT).show();
-                                }
-
-                            } else {
-
-                                Toast.makeText(MainActivity.this, R.string.setTime_Input_void, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-            );
-            return builder.create();
-        }
-    }*/
 
     private void showStrengthenAlarmDialog() {
         StrengthenModeAlarmDialog strengthenModeAlarmDialog = new StrengthenModeAlarmDialog();
@@ -594,4 +450,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return getModeId() == 1 ? true : false;
         }
     }
+    private void gotoPickAndCropSmallBitmap() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        intent.putExtra("crop", "true");
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("outputX", 300);
+        intent.putExtra("outputY", 300);
+        intent.putExtra("scale", true);
+        intent.putExtra("return-data", true);
+        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        intent.putExtra("noFaceDetection", true); // no face detection
+        startActivityForResult(intent,1);
+
+    }
+
+
 }

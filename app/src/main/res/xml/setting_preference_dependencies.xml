@@ -59,6 +59,12 @@
 
     <PreferenceCategory android:title="显示">
 
+        <Preference
+            android:title="锁定界面"
+            android:summary="自定义锁定界面颜色、布局、背景与透明度"
+            android:key="setting_float_view_diy"
+            />
+
         <com.wocao.sherlock.Setting.Preferences.EditTextEncryptPreference
             android:key="setting_display_motto"
             android:selectAllOnFocus="true"

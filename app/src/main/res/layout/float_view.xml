@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/firstuse_backage">
+
+    <TextView
+        android:id="@+id/lockserverUICoutdownTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="3小时45分4秒 标准模式"
+        android:textColor="#958787" />
+
+    <TextClock
+        android:id="@+id/lockserverTCTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:format12Hour="hh:mm"
+        android:format24Hour="HH:mm"
+        android:textColor="@color/InputLayoutHintColor"
+        android:textSize="60sp"
+        tools:ignore="NewApi" />
+
+    <TextClock
+        android:id="@+id/lockserverTCData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lockserverTCTime"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:format12Hour="yyyy-MM-dd EE"
+        android:format24Hour="yyyy-MM-dd EE"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        tools:ignore="NewApi" />
+
+    <TextView
+        android:id="@+id/lockserverTVMotto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lockserverUICoutdownTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:text="这是座右铭文本框"
+        android:textColor="#898989"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/LockUIForceButtonLeft"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#00000000" />
+
+    <Button
+        android:id="@+id/LockUIForceButtonRight"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="#00000000" />
+</RelativeLayout>

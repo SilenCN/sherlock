@@ -6,12 +6,13 @@
     android:id="@+id/lockserverUILayout">
 
     <TextView
+        android:id="@+id/lockserverUICoutdownTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/lockserverUICoutdownTV"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:text="2天3小时45分4秒 标准模式"
+        android:textColor="#958787" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,13 +33,14 @@
             android:textColor="@color/InputLayoutHintColor"
             android:textSize="55sp" />
 
-    <TextClock
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lockserverTCData"
-        android:layout_marginTop="11dp"
-        android:format12Hour="yyyy-MM-dd EE"
-        android:format24Hour="yyyy-MM-dd EE" />
+        <TextClock
+            android:id="@+id/lockserverTCData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:format12Hour="yyyy-MM-dd EE"
+            android:format24Hour="yyyy-MM-dd EE"
+            android:textColor="#ffffff" />
 
     </LinearLayout>
 
@@ -64,14 +66,14 @@
             android:layout_centerVertical="true" />
 
         <TextView
+            android:id="@+id/lockserverTVUnlock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="解锁"
-            android:id="@+id/lockserverTVUnlock"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:text="解锁" />
 
         <SeekBar
             android:id="@+id/lockserverSeekbar"
@@ -97,6 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
+            android:text="这是座右铭文本框"
+            android:textColor="#898989"
             android:textSize="16sp" />
 
         <Button

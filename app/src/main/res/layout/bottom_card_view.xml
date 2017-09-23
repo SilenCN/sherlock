@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/BottomCardLayoutRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:background="#00ffffff"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.wocao.sherlock.Widget.BottomCardHandle
+        android:id="@+id/BottomCardHandle"
+        android:layout_width="40dp"
+        android:layout_height="15dp" />
+
+    <HorizontalScrollView
+        android:id="@+id/BottomCardContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#dfd4d4">
+
+        <LinearLayout
+            android:id="@+id/BottomCardLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>

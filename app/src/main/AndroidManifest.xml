@@ -37,7 +37,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
         <activity android:name=".leading" />
         <activity
             android:name=".ForceUnlock.ResetCipher"
@@ -74,6 +73,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -109,18 +109,12 @@
                 <action android:name="android.net.wifi.STATE_CHANGE" />
             </intent-filter>
         </receiver>
-        <receiver
-            android:name=".Alarm.AlarmActionReceiver"
-
-            >
+        <receiver android:name=".Alarm.AlarmActionReceiver">
             <intent-filter>
                 <action android:name="Sherlock_Alarm_Action" />
             </intent-filter>
         </receiver>
-        <receiver
-            android:name=".Alarm.Notification.AlarmNotificationActionReceiver"
-            
-            >
+        <receiver android:name=".Alarm.Notification.AlarmNotificationActionReceiver">
             <intent-filter>
                 <action android:name="Sherlock_Alarm_Notification_Action" />
             </intent-filter>
@@ -172,8 +166,8 @@
                 <action android:name="com.wocao.sherlock.AppWidget.ServiceState.TimeDisplay" />
                 <action android:name="com.wocao.sherlock.AppWidget.ServiceState.Unlock" />
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.APPWIDGET_ENABLED"/>
-                <action android:name="android.appwidget.action.APPWIDGET_DISABLED"/>
+                <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
+                <action android:name="android.appwidget.action.APPWIDGET_DISABLED" />
             </intent-filter>
 
             <meta-data
@@ -184,7 +178,10 @@
         <service
             android:name=".CoreService.CoreService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".Setting.DiyFloatView.DiyFloatViewActivity" />
+        <activity android:name=".TestActivity"></activity>
     </application>
 
 </manifest>

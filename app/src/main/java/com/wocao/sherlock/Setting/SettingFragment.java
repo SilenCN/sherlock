@@ -16,6 +16,7 @@ import com.wocao.sherlock.Main.MainActivity;
 import com.wocao.sherlock.Permission.PolicyAdminUtils;
 import com.wocao.sherlock.R;
 import com.wocao.sherlock.Setting.ControlByOther.ControlByOtherSettingActivity;
+import com.wocao.sherlock.Setting.DiyFloatView.DiyFloatViewActivity;
 import com.wocao.sherlock.Setting.LimitUnlock.LimitUnlockSettingActivity;
 import com.wocao.sherlock.Setting.Uninstall.UninstallActivity;
 import com.wocao.sherlock.Shortcut.Activity.ShortcutsActivity;
@@ -105,6 +106,13 @@ public class SettingFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 startActivity(new Intent().setClass(getActivity(), ShortcutsActivity.class));
+                return false;
+            }
+        });
+        ((Preference)findPreference("setting_float_view_diy")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(getActivity(), DiyFloatViewActivity.class));
                 return false;
             }
         });
