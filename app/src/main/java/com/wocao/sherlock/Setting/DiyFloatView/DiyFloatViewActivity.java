@@ -37,7 +37,7 @@ public class DiyFloatViewActivity extends AppCompatActivity {
         mottoTv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                event.getX();
+
                 int x = (int) event.getX();
                 int y = (int) event.getY();
                 switch (event.getAction()){

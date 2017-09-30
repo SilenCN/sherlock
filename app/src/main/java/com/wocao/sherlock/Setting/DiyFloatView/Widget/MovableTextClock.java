@@ -2,17 +2,19 @@ package com.wocao.sherlock.Setting.DiyFloatView.Widget;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextClock;
 
 /**
- * Created by silen on 17-9-23.
+ * Created by silen on 17-9-24.
  */
 
-public class MovableTextView extends android.support.v7.widget.AppCompatTextView implements View.OnTouchListener {
+public class MovableTextClock extends TextClock implements View.OnTouchListener {
     private Context context;
     private SharedPreferences sharedPreferences;
     private int offsetX, offsetY;
@@ -21,22 +23,36 @@ public class MovableTextView extends android.support.v7.widget.AppCompatTextView
     private float lastX, lastY;
     private boolean isClick = false;
 
+
     private boolean isInit = false;
 
-    public MovableTextView(Context context) {
+    public MovableTextClock(Context context) {
         super(context);
         this.context = context;
         init();
     }
 
-    public MovableTextView(Context context, AttributeSet attrs) {
+
+    @SuppressWarnings("UnusedDeclaration")
+    public MovableTextClock(Context context, AttributeSet attrs) {
         super(context, attrs);
+
         this.context = context;
         init();
     }
 
-    public MovableTextView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+
+    public MovableTextClock(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+
+        this.context = context;
+        init();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public MovableTextClock(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+
         this.context = context;
         init();
     }
@@ -53,7 +69,6 @@ public class MovableTextView extends android.support.v7.widget.AppCompatTextView
         if (sharedPreferences.contains(getId() + "TextSize")) {
             super.setTextSize(sharedPreferences.getFloat(getId() + "TextSize", this.getTextSize()));
         }
-
 
         this.setOnTouchListener(this);
     }
@@ -95,6 +110,7 @@ public class MovableTextView extends android.support.v7.widget.AppCompatTextView
                 moveTo(event.getX() - lastX, event.getY() - lastY, false);
                 break;
             case MotionEvent.ACTION_UP:
+
                 if (isClick) {
                     performClick();
                     return true;
@@ -132,6 +148,7 @@ public class MovableTextView extends android.support.v7.widget.AppCompatTextView
     public void setMovable(boolean movable) {
         this.movable = movable;
     }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

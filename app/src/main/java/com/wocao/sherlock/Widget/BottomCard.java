@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.RelativeLayout;
 
@@ -14,7 +15,7 @@ import com.wocao.sherlock.R;
 /**
  * TODO: document your custom view class.
  */
-public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouchListener{
+public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouchListener {
 
     private BottomCardHandle handle;
     private int handleHeight = 50;
@@ -24,9 +25,10 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
 
     private float handleLastTouchY = 0;
 
-    private float bottomHeight;
 
     private View contentView;
+
+    private boolean isInit = false;
 
     public BottomCard(Context context) {
         super(context);
@@ -47,7 +49,7 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
     private void init(Context context, AttributeSet attrs, int defStyle) {
         LayoutInflater.from(context).inflate(R.layout.bottom_card_view, this);
         handle = (BottomCardHandle) findViewById(R.id.BottomCardHandle);
-        contentView=(HorizontalScrollView)findViewById(R.id.BottomCardContent);
+        contentView = (HorizontalScrollView) findViewById(R.id.BottomCardContent);
         handleHeight = dip2px(context, 17);
 
         handle.setOnTouchListener(new OnTouchListener() {
@@ -74,26 +76,33 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
     }
 
     private void setRootMarginBottom(float offset) {
-        if (offset + this.offset >= getBottomH()) {
-            this.offsetTopAndBottom((int) (getBottomH() - this.offset));
-            this.offset += (int) (getBottomH() - this.offset);
-        } else if (offset + this.offset <= 0) {
-            this.offsetTopAndBottom((int) (0 - this.offset));
-            this.offset += (int) (0 - this.offset);
+        //  offset=-offset;
+        ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) getLayoutParams();
+
+
+        System.out.println(mlp.bottomMargin);
+        if (-mlp.bottomMargin + offset >= getBottomH()) {
+            mlp.bottomMargin = -getBottomH();
+        } else if (-mlp.bottomMargin + offset <= 0) {
+            mlp.bottomMargin = 0;
         } else {
-            this.offsetTopAndBottom((int) offset);
-            this.offset += (int) offset;
+            mlp.bottomMargin = mlp.bottomMargin - (int) offset;
         }
+        this.offset = -mlp.bottomMargin;
+        setLayoutParams(mlp);
+
         handle.setPercent(this.offset / getBottomH());
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        setRootMarginBottom(getBottomH());
-        bottomHeight = getY();
-        System.out.println(bottomHeight);
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if (!isInit) {
+            setRootMarginBottom(getBottomH());
+            isInit = true;
+        }
     }
+
 
     private int dip2px(Context context, float dpValue) {
         float scale = context.getResources().getDisplayMetrics().density;
@@ -119,19 +128,22 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                setRootMarginBottom((float) animation.getAnimatedValue()-offset);
+                setRootMarginBottom((float) animation.getAnimatedValue() - offset);
             }
         });
         animator.start();
-        isOpen=!isOpen;
+        isOpen = !isOpen;
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        switch (ev.getAction()){
-            case MotionEvent.ACTION_DOWN:break;
-            case MotionEvent.ACTION_MOVE:break;
-            case MotionEvent.ACTION_UP:break;
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
         }
         return super.onInterceptTouchEvent(ev);
     }
@@ -148,7 +160,7 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
         return false;
     }
 
-    public void openOrClose(){
+    public void openOrClose() {
         startAnim();
     }
 }

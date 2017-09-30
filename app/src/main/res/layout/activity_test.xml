@@ -9,4 +9,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
+
+    <com.wocao.sherlock.Setting.DiyFloatView.Widget.MovableTextView
+        android:id="@+id/movableTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试可移动文本框" />
+
+    <com.wocao.sherlock.Setting.DiyFloatView.Widget.MovableTextClock
+        android:id="@+id/movableTextClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="false"
+        android:layout_centerVertical="false"
+        android:textSize="30sp" />
 </RelativeLayout>
