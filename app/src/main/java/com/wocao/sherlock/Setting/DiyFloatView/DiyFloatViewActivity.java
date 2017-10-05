@@ -1,30 +1,22 @@
 package com.wocao.sherlock.Setting.DiyFloatView;
 
-import android.app.DialogFragment;
-import android.content.ContentProvider;
-import android.content.ContentResolver;
+
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.wocao.sherlock.AppWidget.ServiceState.ServiceStateStatic;
-import com.wocao.sherlock.CoreService.FloatWindowAppList;
 import com.wocao.sherlock.R;
 import com.wocao.sherlock.Setting.DiyFloatView.Widget.InitViewInterface;
 import com.wocao.sherlock.Setting.DiyFloatView.Widget.MovableTextClock;
@@ -33,7 +25,6 @@ import com.wocao.sherlock.Setting.SettingUtils;
 import com.wocao.sherlock.Widget.BottomCard;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 
 public class DiyFloatViewActivity extends AppCompatActivity {
 

@@ -152,4 +152,5 @@
     <string name="AppWidgetServiceStateNotRunning">服务未开启</string>
 
     <string name="default_string">默认</string>
+    <string name="choose_color">选择颜色</string>
 </resources>
