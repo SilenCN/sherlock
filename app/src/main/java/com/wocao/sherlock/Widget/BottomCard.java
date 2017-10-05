@@ -79,8 +79,6 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
         //  offset=-offset;
         ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) getLayoutParams();
 
-
-        System.out.println(mlp.bottomMargin);
         if (-mlp.bottomMargin + offset >= getBottomH()) {
             mlp.bottomMargin = -getBottomH();
         } else if (-mlp.bottomMargin + offset <= 0) {
@@ -134,6 +132,11 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
         animator.start();
         isOpen = !isOpen;
     }
+
+    public void strengthClose(){
+        setRootMarginBottom(getBottomH());
+    }
+
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {

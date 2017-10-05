@@ -150,4 +150,6 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="AppWidgetServiceStateNotRunning">服务未开启</string>
+
+    <string name="default_string">默认</string>
 </resources>

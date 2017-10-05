@@ -20,6 +20,7 @@
         android:gravity="center"
         android:maxWidth="80dp"
         android:singleLine="true"
-        android:text="文本" />
+        android:text="文本"
+        android:textColor="#5c5656" />
 
 </LinearLayout>

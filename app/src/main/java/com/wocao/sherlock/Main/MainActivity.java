@@ -152,7 +152,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         shortCutStart();
 
         SettingUtils.updatePreferences(this);
-        startActivity(new Intent(this, TestActivity.class));
+
+        startActivity(new Intent(this,TestActivity.class));
+
+        sp.edit().putInt("height",getWindowManager().getDefaultDisplay().getHeight()).apply();
+        sp.edit().putInt("width",getWindowManager().getDefaultDisplay().getWidth()).apply();
 
     }
 
@@ -449,21 +453,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         public boolean isStrengthMode() {
             return getModeId() == 1 ? true : false;
         }
-    }
-    private void gotoPickAndCropSmallBitmap() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 300);
-        intent.putExtra("outputY", 300);
-        intent.putExtra("scale", true);
-        intent.putExtra("return-data", true);
-        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-        intent.putExtra("noFaceDetection", true); // no face detection
-        startActivityForResult(intent,1);
-
     }
 
 

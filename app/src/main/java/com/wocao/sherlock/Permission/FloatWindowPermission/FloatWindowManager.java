@@ -32,7 +32,7 @@ import java.lang.reflect.Method;
  */
 
 public class FloatWindowManager {
-    private static final String TAG = "FloatWindowManager";
+    private static final String TAG = "FloatWindowManagerBackUp";
 
     private static volatile FloatWindowManager instance;
 

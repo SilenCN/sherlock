@@ -16,12 +16,15 @@ public class MovableTextView extends android.support.v7.widget.AppCompatTextView
     private Context context;
     private SharedPreferences sharedPreferences;
     private int offsetX, offsetY;
-    private boolean movable = false;
+    private boolean movable = true;
 
     private float lastX, lastY;
     private boolean isClick = false;
 
     private boolean isInit = false;
+
+
+    private InitViewInterface initViewInterface;
 
     public MovableTextView(Context context) {
         super(context);
@@ -81,7 +84,7 @@ public class MovableTextView extends android.support.v7.widget.AppCompatTextView
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (movable) {
+        if (!movable) {
             return false;
         }
         switch (event.getAction()) {
@@ -137,6 +140,14 @@ public class MovableTextView extends android.support.v7.widget.AppCompatTextView
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (!isInit) {
+
+            if (null != initViewInterface) {
+                ViewGroup.MarginLayoutParams mlp =
+                        (ViewGroup.MarginLayoutParams) getLayoutParams();
+                mlp.leftMargin = initViewInterface.getPositionX(getMeasuredWidth(), getMeasuredHeight());
+                mlp.topMargin = initViewInterface.getPositionY(getMeasuredWidth(), getMeasuredHeight());
+                setLayoutParams(mlp);
+            }
             if (sharedPreferences.contains(getId() + "OffsetX") || sharedPreferences.contains(getId() + "OffsetY")) {
                 this.offsetX = sharedPreferences.getInt(getId() + "OffsetX", 0);
                 this.offsetY = sharedPreferences.getInt(getId() + "OffsetY", 0);
@@ -149,5 +160,9 @@ public class MovableTextView extends android.support.v7.widget.AppCompatTextView
             }
             isInit = true;
         }
+    }
+
+    public void setInitViewInterface(InitViewInterface initViewInterface) {
+        this.initViewInterface = initViewInterface;
     }
 }

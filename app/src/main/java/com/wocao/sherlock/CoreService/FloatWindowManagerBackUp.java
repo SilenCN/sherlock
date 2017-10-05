@@ -4,18 +4,14 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
-import android.os.Environment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -25,19 +21,13 @@ import com.wocao.sherlock.AESUtils;
 import com.wocao.sherlock.AppWidget.ServiceState.ServiceStateStatic;
 import com.wocao.sherlock.DataBaseOperate.ModeListDBTool;
 import com.wocao.sherlock.R;
-import com.wocao.sherlock.Setting.DiyFloatView.Widget.InitViewInterface;
-import com.wocao.sherlock.Setting.DiyFloatView.Widget.MovableTextClock;
-import com.wocao.sherlock.Setting.DiyFloatView.Widget.MovableTextView;
 import com.wocao.sherlock.Setting.SettingUtils;
-import com.wocao.sherlock.Widget.BottomCard;
-
-import java.io.File;
 
 /**
- * Created by silen on 17-10-3.
+ * Created by silen on 17-5-1.
  */
 
-public class FloatWindowManager {
+public class FloatWindowManagerBackUp {
     private Context context;
 
     private SharedPreferences sharedPreferences;
@@ -46,15 +36,8 @@ public class FloatWindowManager {
     private WindowManager.LayoutParams params;
 
     private View floatView;
-  /*  private SeekBar timeSeekBar;
-    private TextView *//*unlock, whiteList,*//* mottoTv, timeTv;*/
-
-    private MovableTextView mottoTv, timeTv;
-    private MovableTextClock timeTC, dateTC;
-    private BottomCard bottomCard;
-
-    RelativeLayout layout;
-
+    private SeekBar timeSeekBar;
+    private TextView unlock, whiteList, mottoTv, timeTv;
     private Button forceLockLeft, forceLockRight;
 
     private long duration;
@@ -66,12 +49,8 @@ public class FloatWindowManager {
     private boolean seekBarIsTouch = false;
     private int systemBarHeight = 0;
 
-    int windowHeight;
-    int windowWidth;
-
-    private FloatWindowManager.OnShouldReNewTimeListener onShouldReNewTimeListener;
-
-    public FloatWindowManager(Context context, long duration, int lockModeId) {
+    private OnShouldReNewTimeListener onShouldReNewTimeListener;
+    public FloatWindowManagerBackUp(Context context, long duration, int lockModeId) {
 
         this.context = context;
         this.sharedPreferences = context.getSharedPreferences("data", Context.MODE_PRIVATE);
@@ -107,8 +86,8 @@ public class FloatWindowManager {
     }
 
     public void updateView(long timeLeft) {
-/*        if (!seekBarIsTouch)
-            timeSeekBar.setProgress((int) (duration - timeLeft));*/
+        if (!seekBarIsTouch)
+            timeSeekBar.setProgress((int)(duration-timeLeft));
         timeTv.setText(lockModeName + " " + timeCalculate(timeLeft));
     }
 
@@ -152,123 +131,47 @@ public class FloatWindowManager {
 
 
     private void findView() {
-        floatView = LayoutInflater.from(context).inflate(R.layout.float_view, null);
-       /* timeSeekBar = (SeekBar) floatView.findViewById(R.id.lockserverSeekbar);*/
-        // whiteList = (TextView) floatView.findViewById(R.id.lockserverTVWhitelist);
-        //  unlock = (TextView) floatView.findViewById(R.id.lockserverTVUnlock);
-        timeTv = (MovableTextView) floatView.findViewById(R.id.lockserverUICoutdownTV);
-        mottoTv = (MovableTextView) floatView.findViewById(R.id.lockserverTVMotto);
-
-        timeTC = (MovableTextClock) floatView.findViewById(R.id.lockserverTCTime);
-        dateTC = (MovableTextClock) floatView.findViewById(R.id.lockserverTCData);
+        floatView = LayoutInflater.from(context).inflate(R.layout.lockserver_ui, null);
+        timeSeekBar = (SeekBar) floatView.findViewById(R.id.lockserverSeekbar);
+        whiteList = (TextView) floatView.findViewById(R.id.lockserverTVWhitelist);
+        unlock = (TextView) floatView.findViewById(R.id.lockserverTVUnlock);
+        timeTv = (TextView) floatView.findViewById(R.id.lockserverUICoutdownTV);
+        mottoTv = (TextView) floatView.findViewById(R.id.lockserverTVMotto);
         forceLockLeft = (Button) floatView.findViewById(R.id.LockUIForceButtonLeft);
         forceLockRight = (Button) floatView.findViewById(R.id.LockUIForceButtonRight);
-        bottomCard=(BottomCard)floatView.findViewById(R.id.BottomCardTest);
-        layout=(RelativeLayout)floatView.findViewById(R.id.FloatViewLayout);
 
     }
 
     private void initView() {
-        windowHeight = sharedPreferences.getInt("height", 1920);
-        windowWidth = sharedPreferences.getInt("width", 1080);
-
-        new FloatWindowAppList(context,bottomCard,lockModeId);
-
-        timeTv.setInitViewInterface(new InitViewInterface() {
-            @Override
-            public int getPositionX(int width, int height) {
-                return windowWidth / 2 - width / 2;
-            }
-
-            @Override
-            public int getPositionY(int width, int height) {
-                return windowHeight * 3 / 5 - height / 2;
-            }
-        });
-
-        mottoTv.setInitViewInterface(new InitViewInterface() {
-            @Override
-            public int getPositionX(int width, int height) {
-                return windowWidth / 2 - width / 2;
-            }
-
-            @Override
-            public int getPositionY(int width, int height) {
-                return windowHeight * 3 / 4 - height / 2;
-            }
-        });
-        timeTC.setInitViewInterface(new InitViewInterface() {
-            @Override
-            public int getPositionX(int width, int height) {
-                return windowWidth / 2 - width / 2;
-            }
-
-            @Override
-            public int getPositionY(int width, int height) {
-                return windowHeight / 4 - height / 2;
-            }
-        });
-        dateTC.setInitViewInterface(new InitViewInterface() {
-            @Override
-            public int getPositionX(int width, int height) {
-                return windowWidth / 2 - width / 2;
-            }
-
-            @Override
-            public int getPositionY(int width, int height) {
-                return windowHeight / 3 - height / 2;
-            }
-        });
 
         // android 4.2 修复时间显示时HH无法加载，强制使用hh
-
+        TextClock clock = (TextClock) floatView.findViewById(R.id.lockserverTCTime);
         if (Build.VERSION.SDK_INT == 17)
-            timeTC.setFormat24Hour("hh:mm");
+            clock.setFormat24Hour("hh:mm");
 
         //格言设置
         ServiceStateStatic.Moto = SettingUtils.getStringValue(context, "setting_display_motto", null);
         if (null != ServiceStateStatic.Moto && !ServiceStateStatic.Moto.equals("")) {
             ServiceStateStatic.hasMotoSet = true;
-            mottoTv.setText(ServiceStateStatic.Moto);
         } else {
             ServiceStateStatic.hasMotoSet = false;
-            mottoTv.setVisibility(View.INVISIBLE);
         }
+        mottoTv.setText(ServiceStateStatic.Moto);
 
-
-
-/*        //背景透明设置
+        //背景透明设置
 
         if (SettingUtils.getBooleanValue(context, "setting_display_Alpha", false)) {
             //PreferenceManager.getDefaultSharedPreferences(CoreServiceBackup.this).getBoolean("setting_display_Alpha", false)) {
             (floatView.findViewById(R.id.lockserverUILayout)).setBackgroundColor(Color.alpha(0));
             (floatView.findViewById(R.id.lockserverUITimeDisplayLayout)).setVisibility(View.INVISIBLE);
-        }*/
+        }
 
-/*        //隐藏解锁和白名单按钮
+        //隐藏解锁和白名单按钮
         whiteList.setVisibility(View.INVISIBLE);
-        unlock.setVisibility(View.INVISIBLE);*/
+        unlock.setVisibility(View.INVISIBLE);
 
-        //  timeSeekBar.setMax((int) duration);
-        File BACKGROUND_FILE=new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"background.jpg");
-        if (BACKGROUND_FILE.exists()){
-            try {
-                layout.setBackground(new BitmapDrawable(BitmapFactory.decodeFile(BACKGROUND_FILE.getPath())));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        timeSeekBar.setMax((int) duration);
 
-
-
-        if (!sharedPreferences.getBoolean("HaveAppCanRun" + lockModeId, false)&&!sharedPreferences.getBoolean(AESUtils.encrypt("wocstudiosoftware", "useCipher"), false)){
-            bottomCard.setVisibility(View.GONE);
-        }
-
-        dateTC.setMovable(false);
-        timeTC.setMovable(false);
-        //timeTv.setMovable(false);
-        mottoTv.setMovable(false);
     }
 
     private void initData() {
@@ -285,10 +188,10 @@ public class FloatWindowManager {
 
     private void setListener() {
 
-        forceLockLeft.setOnClickListener(new FloatWindowManager.ForceLockButtonListener());
-        forceLockRight.setOnClickListener(new FloatWindowManager.ForceLockButtonListener());
+        forceLockLeft.setOnClickListener(new ForceLockButtonListener());
+        forceLockRight.setOnClickListener(new ForceLockButtonListener());
 
-/*        timeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        timeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser && progress < 3 && whiteList.getVisibility() == View.VISIBLE) {
@@ -324,7 +227,7 @@ public class FloatWindowManager {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                if (null != onShouldReNewTimeListener) {
+                if (null!=onShouldReNewTimeListener){
                     onShouldReNewTimeListener.reNew();
                 }
                 seekBarIsTouch = true;
@@ -344,15 +247,15 @@ public class FloatWindowManager {
                 whiteList.setVisibility(View.INVISIBLE);
                 unlock.setVisibility(View.INVISIBLE);
             }
-        });*/
+        });
     }
 
-    public void setOnShouldReNewTimeListener(FloatWindowManager.OnShouldReNewTimeListener onShouldReNewTimeListener) {
+    public void setOnShouldReNewTimeListener(OnShouldReNewTimeListener onShouldReNewTimeListener) {
         this.onShouldReNewTimeListener = onShouldReNewTimeListener;
     }
 
 
-    public interface OnShouldReNewTimeListener {
+    public interface OnShouldReNewTimeListener{
         void reNew();
     }
 

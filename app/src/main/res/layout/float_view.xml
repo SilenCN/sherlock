@@ -1,52 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/FloatViewLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/firstuse_backage">
+    android:background="#000000">
 
-    <TextView
+    <com.wocao.sherlock.Setting.DiyFloatView.Widget.MovableTextView
         android:id="@+id/lockserverUICoutdownTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="3小时45分4秒 标准模式"
+        android:layout_centerHorizontal="false"
+        android:layout_centerVertical="false"
+        android:text="标准模式 3小时45分4秒"
         android:textColor="#958787" />
 
-    <TextClock
+    <com.wocao.sherlock.Setting.DiyFloatView.Widget.MovableTextClock
         android:id="@+id/lockserverTCTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="90dp"
         android:format12Hour="hh:mm"
         android:format24Hour="HH:mm"
         android:textColor="@color/InputLayoutHintColor"
         android:textSize="60sp"
         tools:ignore="NewApi" />
 
-    <TextClock
+    <com.wocao.sherlock.Setting.DiyFloatView.Widget.MovableTextClock
         android:id="@+id/lockserverTCData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lockserverTCTime"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="false"
         android:format12Hour="yyyy-MM-dd EE"
         android:format24Hour="yyyy-MM-dd EE"
         android:textColor="#ffffff"
         android:textSize="14sp"
         tools:ignore="NewApi" />
 
-    <TextView
+    <com.wocao.sherlock.Setting.DiyFloatView.Widget.MovableTextView
         android:id="@+id/lockserverTVMotto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lockserverUICoutdownTV"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="false"
         android:gravity="center"
         android:text="这是座右铭文本框"
         android:textColor="#898989"
@@ -69,4 +63,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:background="#00000000" />
+
+    <com.wocao.sherlock.Widget.BottomCard
+        android:id="@+id/BottomCardTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

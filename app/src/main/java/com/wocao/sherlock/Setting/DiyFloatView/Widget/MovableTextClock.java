@@ -18,13 +18,16 @@ public class MovableTextClock extends TextClock implements View.OnTouchListener 
     private Context context;
     private SharedPreferences sharedPreferences;
     private int offsetX, offsetY;
-    private boolean movable = false;
+    private boolean movable = true;
 
     private float lastX, lastY;
     private boolean isClick = false;
 
 
     private boolean isInit = false;
+
+
+    private InitViewInterface initViewInterface;
 
     public MovableTextClock(Context context) {
         super(context);
@@ -96,7 +99,7 @@ public class MovableTextClock extends TextClock implements View.OnTouchListener 
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (movable) {
+        if (!movable) {
             return false;
         }
         switch (event.getAction()) {
@@ -154,6 +157,15 @@ public class MovableTextClock extends TextClock implements View.OnTouchListener 
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (!isInit) {
+
+            if (null != initViewInterface) {
+                ViewGroup.MarginLayoutParams mlp =
+                        (ViewGroup.MarginLayoutParams) getLayoutParams();
+                mlp.leftMargin = initViewInterface.getPositionX(getMeasuredWidth(), getMeasuredHeight());
+                mlp.topMargin = initViewInterface.getPositionY(getMeasuredWidth(), getMeasuredHeight());
+                setLayoutParams(mlp);
+            }
+
             if (sharedPreferences.contains(getId() + "OffsetX") || sharedPreferences.contains(getId() + "OffsetY")) {
                 this.offsetX = sharedPreferences.getInt(getId() + "OffsetX", 0);
                 this.offsetY = sharedPreferences.getInt(getId() + "OffsetY", 0);
@@ -166,5 +178,9 @@ public class MovableTextClock extends TextClock implements View.OnTouchListener 
             }
             isInit = true;
         }
+    }
+
+    public void setInitViewInterface(InitViewInterface initViewInterface) {
+        this.initViewInterface = initViewInterface;
     }
 }

@@ -40,7 +40,7 @@ public class BottomCardHandle extends View {
     }
 
     private void init(){
-        color=Color.BLACK;
+        color=Color.GREEN;
         paint=new Paint();
         paint.setColor(color);
         paint.setAlpha(alpha);
