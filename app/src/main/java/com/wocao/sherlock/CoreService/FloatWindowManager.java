@@ -69,6 +69,9 @@ public class FloatWindowManager {
     int windowHeight;
     int windowWidth;
 
+
+    FloatWindowAppList floatWindowAppList;
+
     private FloatWindowManager.OnShouldReNewTimeListener onShouldReNewTimeListener;
 
     public FloatWindowManager(Context context, long duration, int lockModeId) {
@@ -114,7 +117,9 @@ public class FloatWindowManager {
 
     public void updateModeId(int lockModeId) {
         this.lockModeId = lockModeId;
+        floatWindowAppList.updateLockModeId(lockModeId);
         initData();
+
     }
 
     public void pause() {
@@ -163,8 +168,8 @@ public class FloatWindowManager {
         dateTC = (MovableTextClock) floatView.findViewById(R.id.lockserverTCData);
         forceLockLeft = (Button) floatView.findViewById(R.id.LockUIForceButtonLeft);
         forceLockRight = (Button) floatView.findViewById(R.id.LockUIForceButtonRight);
-        bottomCard=(BottomCard)floatView.findViewById(R.id.BottomCardTest);
-        layout=(RelativeLayout)floatView.findViewById(R.id.FloatViewLayout);
+        bottomCard = (BottomCard) floatView.findViewById(R.id.BottomCardTest);
+        layout = (RelativeLayout) floatView.findViewById(R.id.FloatViewLayout);
 
     }
 
@@ -172,7 +177,7 @@ public class FloatWindowManager {
         windowHeight = sharedPreferences.getInt("height", 1920);
         windowWidth = sharedPreferences.getInt("width", 1080);
 
-        new FloatWindowAppList(context,bottomCard,lockModeId);
+        floatWindowAppList = new FloatWindowAppList(context, bottomCard, lockModeId);
 
         timeTv.setInitViewInterface(new InitViewInterface() {
             @Override
@@ -250,8 +255,8 @@ public class FloatWindowManager {
         unlock.setVisibility(View.INVISIBLE);*/
 
         //  timeSeekBar.setMax((int) duration);
-        File BACKGROUND_FILE=new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),"background.jpg");
-        if (BACKGROUND_FILE.exists()){
+        File BACKGROUND_FILE = new File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "background.jpg");
+        if (BACKGROUND_FILE.exists()) {
             try {
                 layout.setBackground(new BitmapDrawable(BitmapFactory.decodeFile(BACKGROUND_FILE.getPath())));
             } catch (Exception e) {
@@ -261,9 +266,6 @@ public class FloatWindowManager {
 
 
 
-        if (!sharedPreferences.getBoolean("HaveAppCanRun" + lockModeId, false)&&!sharedPreferences.getBoolean(AESUtils.encrypt("wocstudiosoftware", "useCipher"), false)){
-            bottomCard.setVisibility(View.GONE);
-        }
 
         dateTC.setMovable(false);
         timeTC.setMovable(false);
@@ -280,6 +282,12 @@ public class FloatWindowManager {
         systemBarHeight += 3;
 
         disableSystemBar = SettingUtils.getBooleanValue(context, "setting_better_disablesystembar", false);
+
+        if (!sharedPreferences.getBoolean("HaveAppCanRun" + lockModeId, false) && !sharedPreferences.getBoolean(AESUtils.encrypt("wocstudiosoftware", "useCipher"), false)) {
+            bottomCard.setVisibility(View.GONE);
+        } else {
+            bottomCard.setVisibility(View.VISIBLE);
+        }
 
     }
 
