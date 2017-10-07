@@ -26,7 +26,7 @@ import com.wocao.sherlock.Widget.BottomCard;
 
 import java.io.File;
 
-public class DiyFloatViewActivity extends AppCompatActivity {
+public class DiyFloatViewActivity extends AppCompatActivity implements View.OnClickListener{
 
     private MovableTextView mottoTv, timeTv;
     private MovableTextClock timeTC, dateTC;
@@ -48,7 +48,6 @@ public class DiyFloatViewActivity extends AppCompatActivity {
         windowWidth = getWindowManager().getDefaultDisplay().getWidth();
 
         findView();
-        viewTest();
 
         initView();
 
@@ -134,12 +133,14 @@ public class DiyFloatViewActivity extends AppCompatActivity {
         if (null != motto && !motto.equals("")) {
             mottoTv.setText(ServiceStateStatic.Moto);
         }
+
+        mottoTv.setOnClickListener(this);
+        timeTv.setOnClickListener(this);
+        timeTC.setOnClickListener(this);
+        dateTC.setOnClickListener(this);
     }
 
 
-    private void viewTest() {
-
-    }
 
     private void findView() {
 
@@ -149,7 +150,6 @@ public class DiyFloatViewActivity extends AppCompatActivity {
         timeTC = (MovableTextClock) findViewById(R.id.lockserverTCTime);
         dateTC = (MovableTextClock) findViewById(R.id.lockserverTCData);
         layout = (RelativeLayout) findViewById(R.id.FloatViewLayout);
-
 
     }
 
@@ -168,13 +168,6 @@ public class DiyFloatViewActivity extends AppCompatActivity {
 
     private void gotoPickAndCropSmallBitmap() {
         Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-     /*   if (Build.VERSION.SDK_INT<19){
-            intent=new Intent(Intent.ACTION_GET_CONTENT);
-        }else{
-            intent=new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        }*/
-
-
 
         intent.setType("image/*");
         intent.putExtra("crop", "true");
@@ -184,11 +177,37 @@ public class DiyFloatViewActivity extends AppCompatActivity {
         intent.putExtra("outputY", windowHeight);
         intent.putExtra("scale", true);
         intent.putExtra("output", Uri.fromFile(BACKGROUND_FILE));
-      /*  intent.putExtra("return-data", true);
-        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-        intent.putExtra("noFaceDetection", true); // no face detection*/
+
         startActivityForResult(intent, 1);
 
     }
 
+    private void viewToSetting(int viewId){
+        Intent intent=new Intent();
+        intent.putExtra("ViewId",viewId);
+        intent.setClass(this,DiyFloatViewDetailActivity.class);
+        startActivity(intent);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (null!=timeTC){
+            timeTC.update();
+        }
+        if (null!=timeTv){
+            timeTv.update();
+        }
+        if (null!= mottoTv){
+            mottoTv.update();
+        }
+        if (null!=dateTC){
+            dateTC.update();
+        }
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        viewToSetting(v.getId());
+    }
 }

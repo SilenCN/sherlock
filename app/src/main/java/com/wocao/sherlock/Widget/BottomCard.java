@@ -135,6 +135,7 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
 
     public void strengthClose(){
         setRootMarginBottom(getBottomH());
+        isOpen=false;
     }
 
 

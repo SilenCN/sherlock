@@ -2,6 +2,7 @@ package com.wocao.sherlock.Widget;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,16 +25,12 @@ import java.util.Map;
  */
 
 public class ColorPickerDialog extends DialogFragment {
-    private int defaultColor= Color.BLACK;
-    private String defaultColorString="";
     private Context context;
     private OnColorReturnListener listener;
 
-    public ColorPickerDialog(Context context,int defaultColor) {
+    public ColorPickerDialog(Context context) {
         super();
-        this.context=context;
-        this.defaultColor=defaultColor;
-        this.defaultColorString=context.getResources().getString(R.string.default_string);
+        this.context = context;
 
     }
 
@@ -42,38 +39,42 @@ public class ColorPickerDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         super.onCreateDialog(savedInstanceState);
 
-        int[] colors=context.getResources().getIntArray(R.array.color_array);
-        String[] colorNames=context.getResources().getStringArray(R.array.color_name_array);
+        int[] colors = context.getResources().getIntArray(R.array.color_array);
+        String[] colorNames = context.getResources().getStringArray(R.array.color_name_array);
 
-        final List<Map<String,Object>> list=new ArrayList<>();
-        for (int i=0;i<colors.length;i++){
-            Map<String,Object> map=new HashMap<>();
-            map.put("colorName",colorNames[i]);
-            map.put("color",colors[i]);
+        final List<Map<String, Object>> list = new ArrayList<>();
+        for (int i = 0; i < colors.length; i++) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("colorName", colorNames[i]);
+            map.put("color", colors[i]);
             list.add(map);
         }
-        Map<String,Object> defaultMap=new HashMap<>();
-        defaultMap.put("colorName",defaultColorString);
-        defaultMap.put("color",defaultColor);
-        list.add(0,defaultMap);
-        AlertDialog.Builder builder =new AlertDialog.Builder(getActivity());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.choose_color);
-        View layoutView= LayoutInflater.from(context).inflate(R.layout.color_picker_dialog,null);
+        View layoutView = LayoutInflater.from(context).inflate(R.layout.color_picker_dialog, null);
         builder.setView(layoutView);
-        GridView gridView=(GridView)layoutView.findViewById(R.id.ColorPickerDialogGridLayout);
-        gridView.setAdapter(new CircleColorViewAdapter(context,list,R.layout.color_picker_dialog_gridview_child_view,new String[]{"colorName","color"},new int[]{R.id.ColorPickerColorNameTextView,R.id.ColorPickerCircleColorView}));
+        GridView gridView = (GridView) layoutView.findViewById(R.id.ColorPickerDialogGridLayout);
+        gridView.setAdapter(new CircleColorViewAdapter(context, list, R.layout.color_picker_dialog_gridview_child_view, new String[]{"colorName", "color"}, new int[]{R.id.ColorPickerColorNameTextView, R.id.ColorPickerCircleColorView}));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (null!=listener){
-                    listener.onReturn((String) list.get(position).get("colorName"),(int)list.get(position).get("color"));
+                if (null != listener) {
+                    listener.onReturn((String) list.get(position).get("colorName"), (int) list.get(position).get("color"));
                 }
                 dismiss();
             }
         });
 
-        builder.setNegativeButton("取消",null);
-
+        builder.setNegativeButton("取消", null);
+        builder.setNeutralButton("恢复默认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (null != listener) {
+                    listener.onDefault();
+                }
+            }
+        });
         return builder.create();
     }
 
@@ -81,7 +82,9 @@ public class ColorPickerDialog extends DialogFragment {
         this.listener = listener;
     }
 
-    public interface OnColorReturnListener{
-       void onReturn(String colorName,int color);
+    public interface OnColorReturnListener {
+        void onReturn(String colorName, int color);
+
+        void onDefault();
     }
 }

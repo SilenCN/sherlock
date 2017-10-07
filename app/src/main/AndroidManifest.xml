@@ -181,7 +181,8 @@
             android:exported="true" />
 
         <activity android:name=".Setting.DiyFloatView.DiyFloatViewActivity" />
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".Setting.DiyFloatView.DiyFloatViewDetailActivity"></activity>
     </application>
 
 </manifest>

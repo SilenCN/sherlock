@@ -56,7 +56,7 @@ public class FloatWindowAppList {
 
     public void updateLockModeId(int lockModeId) {
         listviewList.clear();
-
+        layout.removeAllViews();
         try {
             if (sharedPreferences.getBoolean(AESUtils.encrypt("wocstudiosoftware", "useCipher"), false)) {
                 View view = LayoutInflater.from(context).inflate(R.layout.float_view_applist_gradview_item, null);
@@ -107,7 +107,6 @@ public class FloatWindowAppList {
             } catch (Exception e) {
             }
         }
-        appWhiteDBTool.closeDB();
     }
 
 }

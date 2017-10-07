@@ -158,9 +158,7 @@ public class FloatWindowManager {
 
     private void findView() {
         floatView = LayoutInflater.from(context).inflate(R.layout.float_view, null);
-       /* timeSeekBar = (SeekBar) floatView.findViewById(R.id.lockserverSeekbar);*/
-        // whiteList = (TextView) floatView.findViewById(R.id.lockserverTVWhitelist);
-        //  unlock = (TextView) floatView.findViewById(R.id.lockserverTVUnlock);
+
         timeTv = (MovableTextView) floatView.findViewById(R.id.lockserverUICoutdownTV);
         mottoTv = (MovableTextView) floatView.findViewById(R.id.lockserverTVMotto);
 

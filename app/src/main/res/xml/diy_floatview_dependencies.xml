@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="TextSize"
+        android:summary="默认"
+        android:title="字体大小"
+        android:entries="@array/front_size_entry"
+        android:entryValues="@array/front_size_entry_values"
+        android:defaultValue="0"
+        />
+    <Preference
+        android:key="TextColor"
+        android:summary="默认"
+        android:title="字体颜色" />
+    <ListPreference
+        android:key="TextAlpha"
+        android:summary="不透明"
+        android:title="透明度"
+        android:entries="@array/front_alpha_entry"
+        android:entryValues="@array/front_alpha_entry_values"
+        android:defaultValue="0"
+        />
+    <CheckBoxPreference
+
+        android:key="IsFakeBoldText"
+        android:title="粗体显示" />
+</PreferenceScreen>
