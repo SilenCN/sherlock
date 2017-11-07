@@ -28,18 +28,18 @@
         android:id="@+id/alarmListItemContain">
 
         <TextView
+            android:id="@+id/ShortcutItemLabelTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="08:30--09:48"
-            android:id="@+id/ShortcutItemLabelTV"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:textSize="38sp"
+            android:layout_alignParentTop="true"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:textColor="#b54a74f3" />
+            android:text="08:30--09:48"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#b54a74f3"
+            android:textSize="38sp" />
 
         <TextView
             android:layout_width="wrap_content"

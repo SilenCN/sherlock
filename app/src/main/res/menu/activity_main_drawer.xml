@@ -12,10 +12,10 @@
                 android:id="@+id/drawerIDModeOperate"
                 android:icon="@drawable/ic_whitelist"
                 android:title="模式设置" />
-            <item
+<!--            <item
                 android:id="@+id/drawerIDPlugIn"
                 android:icon="@drawable/plug_in"
-                android:title="插件管理"/>
+                android:title="插件管理"/>-->
 
 <!--            <item
                 android:id="@+id/drawerIDShortcuts"

@@ -37,6 +37,8 @@ public class FloatWindowAppList {
 
     SharedPreferences sharedPreferences;
 
+    private int contentNumber=0;
+
     public FloatWindowAppList(Context context, BottomCard bottomCard, int lockModeId) {
         this.bottomCard = bottomCard;
         this.context = context;
@@ -77,6 +79,7 @@ public class FloatWindowAppList {
                     }
                 });
                 layout.addView(view);
+                contentNumber++;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,10 +106,14 @@ public class FloatWindowAppList {
                         }
                     });
                     layout.addView(view);
+                    contentNumber++;
                 }
             } catch (Exception e) {
             }
         }
     }
 
+    public int getContentNumber() {
+        return contentNumber;
+    }
 }

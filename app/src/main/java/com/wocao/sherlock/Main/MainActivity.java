@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         SettingUtils.updatePreferences(this);
 
-    //    startActivity(new Intent(this,TestActivity.class));
+       // startActivity(new Intent(this,TestActivity.class));
 
         sp.edit().putInt("height",getWindowManager().getDefaultDisplay().getHeight()).apply();
         sp.edit().putInt("width",getWindowManager().getDefaultDisplay().getWidth()).apply();

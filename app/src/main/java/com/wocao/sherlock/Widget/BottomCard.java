@@ -3,10 +3,12 @@ package com.wocao.sherlock.Widget;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.HorizontalScrollView;
 import android.widget.RelativeLayout;
 
@@ -28,8 +30,9 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
 
     private View contentView;
 
-    private boolean isInit = false;
 
+
+    private boolean isInited=false;
     public BottomCard(Context context) {
         super(context);
         init(context, null, 0);
@@ -72,13 +75,25 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
                 return true;
             }
         });
+        getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (!isInited) {
+                    setRootMarginBottom(getBottomH());
+                    isInited=true;
+                }
+            }
+        });
 
     }
 
     private void setRootMarginBottom(float offset) {
-        //  offset=-offset;
-        ViewGroup.MarginLayoutParams mlp = (ViewGroup.MarginLayoutParams) getLayoutParams();
 
+    //    Log.i("Offset", offset + "");
+        //  offset=-offset;
+        RelativeLayout.LayoutParams mlp = (RelativeLayout.LayoutParams) getLayoutParams();
+
+  //      Log.i("info", "top:" + mlp.topMargin + "\t" + mlp.toString());
         if (-mlp.bottomMargin + offset >= getBottomH()) {
             mlp.bottomMargin = -getBottomH();
         } else if (-mlp.bottomMargin + offset <= 0) {
@@ -90,16 +105,11 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
         setLayoutParams(mlp);
 
         handle.setPercent(this.offset / getBottomH());
+/*
+        Log.i("This.Offset", this.offset + "");
+        Log.i("position", "" + this.getY());*/
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if (!isInit) {
-            setRootMarginBottom(getBottomH());
-            isInit = true;
-        }
-    }
 
 
     private int dip2px(Context context, float dpValue) {
@@ -107,8 +117,8 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
         return (int) (dpValue * scale + 0.5f);
     }
 
-    private int getBottomH() {
-        return (getMeasuredHeight() - handleHeight);
+    public int getBottomH() {
+        return (getMeasuredHeight() - handleHeight) + 1;
     }
 
     private void startAnim() {
@@ -133,9 +143,9 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
         isOpen = !isOpen;
     }
 
-    public void strengthClose(){
+    public void strengthClose() {
         setRootMarginBottom(getBottomH());
-        isOpen=false;
+        isOpen = false;
     }
 
 
@@ -155,7 +165,7 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
     float lastY = 0;
 
 
-    public View getContentView() {
+    public View getContentView()  {
         return contentView;
     }
 
@@ -166,5 +176,9 @@ public class BottomCard extends RelativeLayout implements RelativeLayout.OnTouch
 
     public void openOrClose() {
         startAnim();
+    }
+
+    public float getOffset() {
+        return this.offset;
     }
 }

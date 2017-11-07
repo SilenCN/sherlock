@@ -51,6 +51,8 @@ public class DiyFloatViewActivity extends AppCompatActivity implements View.OnCl
 
         initView();
 
+
+
     }
 
     private void initView() {
@@ -209,5 +211,13 @@ public class DiyFloatViewActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         viewToSetting(v.getId());
+    }
+
+    @Override
+    public void onBackPressed() {
+        showFinishDialog();
+    }
+    private void showFinishDialog(){
+        new DiyExitDialog().show(getSupportFragmentManager(),null);
     }
 }

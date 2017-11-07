@@ -116,7 +116,6 @@ public class DiySettingFragment extends PreferenceFragment {
             textAlphaLP.setValueIndex(0);
         }
 
-
         textAlphaLP.setSummary(textAlphaLP.getEntry());
 
         boldCB.setChecked(sharedPreferences.getBoolean(viewId + "IsFakeBoldText", false));
@@ -124,6 +123,7 @@ public class DiySettingFragment extends PreferenceFragment {
         if (sharedPreferences.contains(viewId + "TextColor")) {
             textColorP.setSummary(sharedPreferences.getString(viewId + "TextColorName", "默认"));
         }
+
 
     }
 

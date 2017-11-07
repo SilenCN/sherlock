@@ -75,12 +75,10 @@ public class FloatWindowManager {
     private FloatWindowManager.OnShouldReNewTimeListener onShouldReNewTimeListener;
 
     public FloatWindowManager(Context context, long duration, int lockModeId) {
-
         this.context = context;
         this.sharedPreferences = context.getSharedPreferences("data", Context.MODE_PRIVATE);
         this.duration = duration;
         this.lockModeId = lockModeId;
-
     }
 
     public void showFloatWindow() {
@@ -263,11 +261,9 @@ public class FloatWindowManager {
         }
 
 
-
-
         dateTC.setMovable(false);
         timeTC.setMovable(false);
-        //timeTv.setMovable(false);
+        timeTv.setMovable(false);
         mottoTv.setMovable(false);
     }
 

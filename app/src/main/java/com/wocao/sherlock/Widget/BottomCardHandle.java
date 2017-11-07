@@ -43,7 +43,7 @@ public class BottomCardHandle extends View {
         color=Color.GREEN;
         paint=new Paint();
         paint.setColor(color);
-        paint.setAlpha(alpha);
+     //   paint.setAlpha(alpha);
         paint.setAntiAlias(true);
         paint.setStrokeWidth(4);
         paint.setStyle(Paint.Style.STROKE);

@@ -30,7 +30,7 @@ public class DiyFloatViewDetailActivity extends AppCompatActivity {
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setTitle("配置");
     }
 
     @Override
@@ -47,4 +47,6 @@ public class DiyFloatViewDetailActivity extends AppCompatActivity {
     public int getViewId(){
         return viewId;
     }
+
+
 }

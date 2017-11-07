@@ -104,7 +104,7 @@ public class UpdateUtils {
                             newLink = getResultForHttpGet("link.html");
                             updateInfo = getResultForHttpGet("updateInfo.html");
                             System.out.println(updateInfo);
-                            new UpdateDialog(newVersion, updateInfo, newLink, sp);
+                            new UpdateDialog(newVersion, updateInfo, newLink, sp).show(fragmentManager,null);
                         } else {
                             handler.sendEmptyMessage(new Message().what);
 
