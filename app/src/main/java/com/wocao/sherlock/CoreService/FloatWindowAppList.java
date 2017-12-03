@@ -59,6 +59,7 @@ public class FloatWindowAppList {
 
     public void updateLockModeId(int lockModeId) {
         listviewList.clear();
+        contentNumber=0;
         layoutLine1.removeAllViews();
         layoutLine2.removeAllViews();
         try {
@@ -90,6 +91,8 @@ public class FloatWindowAppList {
         appWhiteDBTool = new AppWhiteDBTool(context, lockModeId);
 
         List list = appWhiteDBTool.quaryAllPackageCanOpen();
+
+        System.out.println(list);
 
         if (contentNumber + list.size() > 7) {
             doubleLineDisplay = true;
