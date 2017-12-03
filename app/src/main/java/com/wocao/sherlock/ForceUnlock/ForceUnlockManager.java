@@ -27,9 +27,8 @@ public class ForceUnlockManager {
         }
     }
     public static String getRandomCipher(int length){
-        String cipher=new String();
-        cipher= Base64.encodeToString((Math.random()*10000000+""+Math.random()*10000000).getBytes(),Base64.DEFAULT).substring(0,length);
-
-        return cipher;
+        String cipher= Base64.encodeToString((Math.random()*10000000+""+Math.random()*10000000).getBytes(),Base64.DEFAULT);
+        cipher=cipher.replaceAll("[0oO1lI]","");
+        return cipher.substring(0,length);
     }
 }
