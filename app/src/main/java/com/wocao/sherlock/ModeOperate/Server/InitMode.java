@@ -39,16 +39,6 @@ public class InitMode extends AsyncTask<String, Integer, String> {
         appWhiteDBTool = new AppWhiteDBTool(context, 0);
         appWhiteDBTool2 = new AppWhiteDBTool(context, 1);
 
-/*      pdialog = new ProgressDialog(context, 0);
-        pdialog.setCanceledOnTouchOutside(false);
-
-        pdialog.setTitle(R.string.AppCanOpen_loading);
-        pdialog.setMessage(context.getResources().getString(R.string.AppCanOpen_loadingMessage));
-
-        pdialog.setCancelable(true);
-
-        pdialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        pdialog.show();*/
     }
 
     @Override

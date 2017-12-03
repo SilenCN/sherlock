@@ -36,6 +36,7 @@ import com.wocao.sherlock.AppConfig;
 import com.wocao.sherlock.DataBaseOperate.AppWhiteDBTool;
 import com.wocao.sherlock.ExitApplication;
 import com.wocao.sherlock.ModeOperate.Model.LockMode;
+import com.wocao.sherlock.ModeOperate.View.ModeHelpDialog;
 import com.wocao.sherlock.R;
 import com.wocao.sherlock.Setting.SettingUtils;
 import com.wocao.sherlock.appTool;
@@ -123,7 +124,7 @@ public class AppWhiteList extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String[] p1) {
-            boolean showDesktopApp = SettingUtils.getBooleanValue(AppWhiteList.this,"setting_better_showDesktopApp",false);//
+            boolean showDesktopApp = SettingUtils.getBooleanValue(AppWhiteList.this, "setting_better_showDesktopApp", false);//
             // PreferenceManager.getDefaultSharedPreferences(AppWhiteList.this).getBoolean("setting_better_showDesktopApp", false);
             pm = getPackageManager();
             am = (ActivityManager) getApplication().getSystemService(getApplication().ACTIVITY_SERVICE);
@@ -183,6 +184,8 @@ public class AppWhiteList extends AppCompatActivity {
 
                         if (pm.getLaunchIntentForPackage(pi.packageName) != null) {
 
+                            map.put("HasLaunch", true);
+
                             if (PackageInfo[1]) {
                                 CanOpenAppCount++;
                                 listviewList.add(listOpenToken, map);
@@ -194,7 +197,8 @@ public class AppWhiteList extends AppCompatActivity {
                                 listviewList.add(listNoneToken + listOpenToken + listRunToken, map);
                                 listNoneToken++;
                             }
-                        }else {
+                        } else {
+                            map.put("HasLaunch", false);
                             if (PackageInfo[1]) {
                                 listviewListTemp.add(listOpenTokenTemp, map);
                                 listOpenTokenTemp++;
@@ -227,7 +231,7 @@ public class AppWhiteList extends AppCompatActivity {
             myAdapter.notifyDataSetChanged();
 
             if (sp.getBoolean("isAppWhiteListHelpFistShow", true)) {
-                new helpDialog().show(getSupportFragmentManager(), null);
+                new ModeHelpDialog().show(getSupportFragmentManager(), null);
                 sp.edit().putBoolean("isAppWhiteListHelpFistShow", false).commit();
             }
 
@@ -296,6 +300,12 @@ public class AppWhiteList extends AppCompatActivity {
             holder.AppName.setText((String) listviewListTemp.get(position).get("AppName"));
             holder.canRunCB.setChecked((boolean) listviewListTemp.get(position).get("AppCanRun"));
             holder.canOpenCB.setChecked((boolean) listviewListTemp.get(position).get("AppCanOpen"));
+
+            if ((boolean) listviewListTemp.get(position).get("HasLaunch")) {
+                holder.canOpenCB.setVisibility(View.VISIBLE);
+            } else {
+                holder.canOpenCB.setVisibility(View.INVISIBLE);
+            }
             final ViewHolder finalHolder = holder;
             holder.canOpenCB.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -321,7 +331,7 @@ public class AppWhiteList extends AppCompatActivity {
             holder.canRunCB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                  //  Toast.makeText(AppWhiteList.this, ""+(String)listviewList.get(position).get("AppPackage"), Toast.LENGTH_LONG).show();
+                    //  Toast.makeText(AppWhiteList.this, ""+(String)listviewList.get(position).get("AppPackage"), Toast.LENGTH_LONG).show();
                     sp.edit().putBoolean((String) listviewList.get(position).get("AppPackage"), finalHolder.canRunCB.isChecked()).commit();
 
                     if (finalHolder.canRunCB.isChecked() == false && finalHolder.canOpenCB.isChecked() == true) {
@@ -398,11 +408,10 @@ public class AppWhiteList extends AppCompatActivity {
             task.cancel(true);
             task = null;
             finish();
-        }else {
+        } else {
             searchView.setIconified(true);
         }
     }
-
 
 
     @Override
@@ -413,15 +422,19 @@ public class AppWhiteList extends AppCompatActivity {
                 backPress();
                 break;
             case R.id.activity_applist_menu_help:
-                new helpDialog().show(getSupportFragmentManager(), null);
+                new ModeHelpDialog().show(getSupportFragmentManager(), null);
                 break;
-            case R.id.activity_applist_menu_allcheck_run:new MenuTask(this,1).execute("");
+            case R.id.activity_applist_menu_allcheck_run:
+                new MenuTask(this, 1).execute("");
                 break;
-            case R.id.activity_applist_menu_allcheck_open:new MenuTask(this,0).execute("");
+            case R.id.activity_applist_menu_allcheck_open:
+                new MenuTask(this, 0).execute("");
                 break;
-            case R.id.activity_applist_menu_uncheck_open:new MenuTask(this,3).execute("");
+            case R.id.activity_applist_menu_uncheck_open:
+                new MenuTask(this, 3).execute("");
                 break;
-            case R.id.activity_applist_menu_uncheck_run:new MenuTask(this,2).execute("");
+            case R.id.activity_applist_menu_uncheck_run:
+                new MenuTask(this, 2).execute("");
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -431,9 +444,10 @@ public class AppWhiteList extends AppCompatActivity {
     private class MenuTask extends AsyncTask<String, Integer, String> {
         int le = 0;
         ProgressDialog pdialog;
-        private int mode=0;
-        public MenuTask(Context context,int mode) {
-            this.mode=mode;
+        private int mode = 0;
+
+        public MenuTask(Context context, int mode) {
+            this.mode = mode;
 
             pdialog = new ProgressDialog(context, 0);
             pdialog.setCanceledOnTouchOutside(false);
@@ -455,36 +469,38 @@ public class AppWhiteList extends AppCompatActivity {
             pdialog.setMax(le);
             le = 0;
 
-            for (Map<String,Object> pi : listviewListTemp) {
+            for (Map<String, Object> pi : listviewListTemp) {
 
-                switch (mode){
+                switch (mode) {
                     case 0://全选可打开
-                        if (!(boolean)pi.get("AppCanOpen")) {
-                            CanOpenAppCount++;
-                            pi.put("AppCanOpen",true);
+                        if (!(boolean) pi.get("AppCanOpen")) {
+                            if ((boolean) pi.get("HasLaunch")) {
+                                CanOpenAppCount++;
+                                pi.put("AppCanOpen", true);
+                            }
                         }
                     case 1://全选可运行
-                        if (!(boolean)pi.get("AppCanRun")) {
-                            pi.put("AppCanRun",true);
+                        if (!(boolean) pi.get("AppCanRun")) {
+                            pi.put("AppCanRun", true);
                         }
                         break;
                     case 2://清空可运行
-                        if ((boolean)pi.get("AppCanRun")) {
-                            pi.put("AppCanRun",false);
+                        if ((boolean) pi.get("AppCanRun")) {
+                            pi.put("AppCanRun", false);
                             for (String p : getResources().getStringArray(R.array.open_app_package)) {
-                                if (((String)pi.get("AppPackage")).indexOf(p) != -1) {
-                                    pi.put("AppCanRun",true);
+                                if (((String) pi.get("AppPackage")).indexOf(p) != -1) {
+                                    pi.put("AppCanRun", true);
                                 }
                             }
                         }
                     case 3://清空可打开
-                        if ((boolean)pi.get("AppCanOpen")) {
+                        if ((boolean) pi.get("AppCanOpen")) {
                             CanOpenAppCount--;
-                            pi.put("AppCanOpen",false);
+                            pi.put("AppCanOpen", false);
                         }
                         break;
                 }
-                appWhiteDBTool.updateOrCreatePackageInfo((String) pi.get("AppPackage"),(boolean) pi.get("AppCanRun"), (boolean)pi.get("AppCanOpen"));
+                appWhiteDBTool.updateOrCreatePackageInfo((String) pi.get("AppPackage"), (boolean) pi.get("AppCanRun"), (boolean) pi.get("AppCanOpen"));
 
                 le++;
                 publishProgress(le);
@@ -514,7 +530,7 @@ public class AppWhiteList extends AppCompatActivity {
         }
     }
 
-    public static class helpDialog extends DialogFragment {
+/*    public static class helpDialog extends DialogFragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             android.support.v7.app.AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -529,6 +545,6 @@ public class AppWhiteList extends AppCompatActivity {
 
             return builder.create();
         }
-    }
+    }*/
 
 }

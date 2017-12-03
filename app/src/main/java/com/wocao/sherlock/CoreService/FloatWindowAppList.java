@@ -28,7 +28,7 @@ import java.util.Map;
 public class FloatWindowAppList {
     Context context;
     BottomCard bottomCard;
-    LinearLayout layout;
+    LinearLayout layoutLine1, layoutLine2;
     AppWhiteDBTool appWhiteDBTool;
     List<Map<String, Object>> listviewList = new ArrayList<Map<String, Object>>();
 
@@ -37,7 +37,9 @@ public class FloatWindowAppList {
 
     SharedPreferences sharedPreferences;
 
-    private int contentNumber=0;
+    private int contentNumber = 0;
+
+    private boolean doubleLineDisplay = false;
 
     public FloatWindowAppList(Context context, BottomCard bottomCard, int lockModeId) {
         this.bottomCard = bottomCard;
@@ -49,16 +51,16 @@ public class FloatWindowAppList {
 
     private void initAppList() {
         pm = context.getPackageManager();
-        layout = (LinearLayout) bottomCard.getContentView().findViewById(R.id.BottomCardLayout);
-
+        layoutLine1 = (LinearLayout) bottomCard.getContentView().findViewById(R.id.BottomCardLayoutLine1);
+        layoutLine2 = (LinearLayout) bottomCard.getContentView().findViewById(R.id.BottomCardLayoutLine2);
         updateLockModeId(lockModeId);
 
-        //   updateLockModeId(lockModeId);
     }
 
     public void updateLockModeId(int lockModeId) {
         listviewList.clear();
-        layout.removeAllViews();
+        layoutLine1.removeAllViews();
+        layoutLine2.removeAllViews();
         try {
             if (sharedPreferences.getBoolean(AESUtils.encrypt("wocstudiosoftware", "useCipher"), false)) {
                 View view = LayoutInflater.from(context).inflate(R.layout.float_view_applist_gradview_item, null);
@@ -78,7 +80,7 @@ public class FloatWindowAppList {
                         CoreStatic.AccessibilityModeOnTheUnlock = true;
                     }
                 });
-                layout.addView(view);
+                layoutLine1.addView(view);
                 contentNumber++;
             }
         } catch (Exception e) {
@@ -88,6 +90,14 @@ public class FloatWindowAppList {
         appWhiteDBTool = new AppWhiteDBTool(context, lockModeId);
 
         List list = appWhiteDBTool.quaryAllPackageCanOpen();
+
+        if (contentNumber + list.size() > 7) {
+            doubleLineDisplay = true;
+            layoutLine2.setVisibility(View.VISIBLE);
+        } else {
+            doubleLineDisplay = false;
+            layoutLine2.setVisibility(View.INVISIBLE);
+        }
 
         for (final Object packageName : list) {
             try {
@@ -105,8 +115,17 @@ public class FloatWindowAppList {
                             CoreStatic.AccessibilityModeOnTheUnlock = true;
                         }
                     });
-                    layout.addView(view);
                     contentNumber++;
+                    if (doubleLineDisplay) {
+                        if (contentNumber % 2 == 0) {
+                            layoutLine2.addView(view);
+                        } else {
+                            layoutLine1.addView(view);
+                        }
+                    } else {
+                        layoutLine1.addView(view);
+                    }
+
                 }
             } catch (Exception e) {
             }
