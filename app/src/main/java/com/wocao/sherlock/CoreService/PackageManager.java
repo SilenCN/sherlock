@@ -18,8 +18,10 @@ import com.wocao.sherlock.DataBaseOperate.AppWhiteDBTool;
 import com.wocao.sherlock.Permission.PolicyAdminUtils;
 import com.wocao.sherlock.appTool;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 
@@ -104,7 +106,7 @@ public class PackageManager {
 
     public boolean checkPackage(String packageName) {
 
-      //  writeInforToSdCard.write(packageName+"\n");
+
 
         boolean returnResult = false;
 
@@ -145,6 +147,8 @@ public class PackageManager {
             policyManager.lockNow();
         }
 
+
+    //    writeInforToSdCard.write(new SimpleDateFormat("HH:mm:ss SSS ").format(new Date())+packageName+"\t"+returnResult+"\n");
         return returnResult;
     }
 

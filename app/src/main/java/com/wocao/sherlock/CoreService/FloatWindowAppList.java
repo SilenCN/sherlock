@@ -101,7 +101,7 @@ public class FloatWindowAppList {
                         @Override
                         public void onClick(View v) {
                             bottomCard.strengthClose();
-                            context.startActivity(pm.getLaunchIntentForPackage((String) packageName).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                            context.startActivity(pm.getLaunchIntentForPackage((String) packageName)/*.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)*/);
                             CoreStatic.AccessibilityModeOnTheUnlock = true;
                         }
                     });

@@ -18,6 +18,7 @@
         <item>com.miui.securitycenter</item>
         <item>com.android.server.telecom</item>
         <item>cn.nubia.applockmanager</item>
+        <item>com.vivo.secime.service</item>
     </string-array>
     <string-array name="limit_unlock_entry_duration">
         <item>一天</item>
