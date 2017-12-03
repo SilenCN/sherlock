@@ -238,13 +238,7 @@ public class FloatWindowManager {
 
 
 
-/*        //背景透明设置
 
-        if (SettingUtils.getBooleanValue(context, "setting_display_Alpha", false)) {
-            //PreferenceManager.getDefaultSharedPreferences(CoreServiceBackup.this).getBoolean("setting_display_Alpha", false)) {
-            (floatView.findViewById(R.id.lockserverUILayout)).setBackgroundColor(Color.alpha(0));
-            (floatView.findViewById(R.id.lockserverUITimeDisplayLayout)).setVisibility(View.INVISIBLE);
-        }*/
 
 /*        //隐藏解锁和白名单按钮
         whiteList.setVisibility(View.INVISIBLE);
@@ -260,6 +254,14 @@ public class FloatWindowManager {
             }
         }
 
+        //背景透明设置
+
+        if (SettingUtils.getBooleanValue(context, "setting_display_Alpha", false)) {
+            //PreferenceManager.getDefaultSharedPreferences(CoreServiceBackup.this).getBoolean("setting_display_Alpha", false)) {
+            layout.setBackgroundColor(Color.alpha(0));
+            dateTC.setVisibility(View.INVISIBLE);
+            timeTC.setVisibility(View.INVISIBLE);
+        }
 
         dateTC.setMovable(false);
         timeTC.setMovable(false);
@@ -282,6 +284,7 @@ public class FloatWindowManager {
         } else {
             bottomCard.setVisibility(View.VISIBLE);
         }
+
 
     }
 
