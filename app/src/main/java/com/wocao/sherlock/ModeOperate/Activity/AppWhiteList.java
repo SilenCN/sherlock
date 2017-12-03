@@ -42,6 +42,8 @@ import com.wocao.sherlock.Setting.SettingUtils;
 import com.wocao.sherlock.appTool;
 import com.wocao.sherlock.MaterialDesign.StatusBarUtils;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -109,6 +111,11 @@ public class AppWhiteList extends AppCompatActivity {
         int le = 0;
         ProgressDialog pdialog;
 
+        int listRunToken = 0, listOpenToken = 0, listNoneToken = 0;
+        int listRunTokenTemp = 0, listOpenTokenTemp = 0, listNoneTokenTemp = 0;
+
+        boolean showDesktopApp = SettingUtils.getBooleanValue(AppWhiteList.this, "setting_better_showDesktopApp", false);//
+
         public Task(Context context) {
             pdialog = new ProgressDialog(context, 0);
             pdialog.setCanceledOnTouchOutside(false);
@@ -124,8 +131,7 @@ public class AppWhiteList extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String[] p1) {
-            boolean showDesktopApp = SettingUtils.getBooleanValue(AppWhiteList.this, "setting_better_showDesktopApp", false);//
-            // PreferenceManager.getDefaultSharedPreferences(AppWhiteList.this).getBoolean("setting_better_showDesktopApp", false);
+            //    boolean showDesktopApp = SettingUtils.getBooleanValue(AppWhiteList.this, "setting_better_showDesktopApp", false);//
             pm = getPackageManager();
             am = (ActivityManager) getApplication().getSystemService(getApplication().ACTIVITY_SERVICE);
             applist = pm.getInstalledPackages(0);
@@ -136,85 +142,23 @@ public class AppWhiteList extends AppCompatActivity {
 
             pdialog.setMax(le);
             le = 0;
-            int listRunToken = 0, listOpenToken = 0, listNoneToken = 0;
-            int listRunTokenTemp = 0, listOpenTokenTemp = 0, listNoneTokenTemp = 0;
+
+            List<String> packageListFromShell=new ArrayList<>();
 
             for (PackageInfo pi : applist) {
-                ApplicationInfo ai;
-                ai = pi.applicationInfo;
-
-                for (String p : getResources().getStringArray(R.array.open_app_package)) {
-                    if (pi.packageName.indexOf(p) != -1) {
-                        appWhiteDBTool.updateOrCreatePackageInfo(pi.packageName, true);
-                    }
-                }
-
-                boolean isHomePackage = false;
-                if (!showDesktopApp)
-                    for (String p : appTool.getAllHomes(AppWhiteList.this)) {
-                        if (pi.packageName.indexOf(p) != -1) {
-                            appWhiteDBTool.updateOrCreatePackageInfo(pi.packageName, false);
-                            isHomePackage = true;
-                            break;
-                        }
-                    }
-                if (!isHomePackage)
-                    if (pi.packageName.equals("com.wocao.sherlock") || pi.packageName.equals("com.wocao.sherlockassist") || pi.packageName.equals("com.android.settings")) {
-                        appWhiteDBTool.updateOrCreatePackageInfo(pi.packageName, false);
-                        appWhiteDBTool.updateOrCreatePackageInfo("com.wocao.sherlockassist", true);
-
-                    } else if (!showDesktopApp && pi.packageName.equals(AppConfig.homesPackage)) {
-                        appWhiteDBTool.updateOrCreatePackageInfo(AppConfig.homesPackage, false);
-                    } else {
-
-                        String appname = pm.getApplicationLabel(ai).toString();
-
-                        Drawable draw = ai.loadIcon(getPackageManager());
-                        Map<String, Object> map = new HashMap<String, Object>();
-
-                        map.put("AppIcon", draw);
-                        map.put("AppName", appname);
-
-                        map.put("AppPackage", pi.packageName);
-
-
-                        boolean PackageInfo[] = appWhiteDBTool.quaryPackageInfo(pi.packageName);
-                        map.put("AppCanRun", PackageInfo[0]);
-                        map.put("AppCanOpen", PackageInfo[1]);
-
-                        if (pm.getLaunchIntentForPackage(pi.packageName) != null) {
-
-                            map.put("HasLaunch", true);
-
-                            if (PackageInfo[1]) {
-                                CanOpenAppCount++;
-                                listviewList.add(listOpenToken, map);
-                                listOpenToken++;
-                            } else if (PackageInfo[0]) {
-                                listviewList.add(listOpenToken + listRunToken, map);
-                                listRunToken++;
-                            } else {
-                                listviewList.add(listNoneToken + listOpenToken + listRunToken, map);
-                                listNoneToken++;
-                            }
-                        } else {
-                            map.put("HasLaunch", false);
-                            if (PackageInfo[1]) {
-                                listviewListTemp.add(listOpenTokenTemp, map);
-                                listOpenTokenTemp++;
-                            } else if (PackageInfo[0]) {
-                                listviewListTemp.add(listOpenTokenTemp + listRunTokenTemp, map);
-                                listRunTokenTemp++;
-                            } else {
-                                listviewListTemp.add(listNoneTokenTemp + listOpenTokenTemp + listRunTokenTemp, map);
-                                listNoneTokenTemp++;
-                            }
-                        }
-                    }
+                checkPackage(pi.applicationInfo, pi.packageName);
+                packageListFromShell.remove(pi.packageName);
                 le++;
                 publishProgress(le);
             }
 
+            for (String packageName:packageListFromShell){
+                try {
+                    checkPackage(pm.getApplicationInfo(packageName, 0),packageName);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
             sp.edit().putBoolean("HaveAppCanRun" + lockMode.getId(), CanOpenAppCount > 0 ? true : false).commit();
             listviewList.addAll(listviewListTemp);
             listviewListTemp.clear();
@@ -247,6 +191,93 @@ public class AppWhiteList extends AppCompatActivity {
         protected void onProgressUpdate(Integer[] values) {
             super.onProgressUpdate(values);
             pdialog.setProgress(values[0]);
+        }
+
+        private void checkPackage(ApplicationInfo ai, String packageName) {
+            for (String p : getResources().getStringArray(R.array.open_app_package)) {
+                if (packageName.indexOf(p) != -1) {
+                    appWhiteDBTool.updateOrCreatePackageInfo(packageName, true);
+                }
+            }
+
+            boolean isHomePackage = false;
+            if (!showDesktopApp)
+                for (String p : appTool.getAllHomes(AppWhiteList.this)) {
+                    if (packageName.indexOf(p) != -1) {
+                        appWhiteDBTool.updateOrCreatePackageInfo(packageName, false);
+                        isHomePackage = true;
+                        break;
+                    }
+                }
+            if (!isHomePackage)
+                if (packageName.equals("com.wocao.sherlock") || packageName.equals("com.wocao.sherlockassist") || packageName.equals("com.android.settings")) {
+                    appWhiteDBTool.updateOrCreatePackageInfo(packageName, false);
+                    appWhiteDBTool.updateOrCreatePackageInfo("com.wocao.sherlockassist", true);
+
+                } else if (!showDesktopApp && packageName.equals(AppConfig.homesPackage)) {
+                    appWhiteDBTool.updateOrCreatePackageInfo(AppConfig.homesPackage, false);
+                } else {
+
+                    String appname = pm.getApplicationLabel(ai).toString();
+
+                    Drawable draw = ai.loadIcon(getPackageManager());
+                    Map<String, Object> map = new HashMap<String, Object>();
+
+                    map.put("AppIcon", draw);
+                    map.put("AppName", appname);
+
+                    map.put("AppPackage", packageName);
+
+
+                    boolean PackageInfo[] = appWhiteDBTool.quaryPackageInfo(packageName);
+                    map.put("AppCanRun", PackageInfo[0]);
+                    map.put("AppCanOpen", PackageInfo[1]);
+
+                    if (pm.getLaunchIntentForPackage(packageName) != null) {
+
+                        map.put("HasLaunch", true);
+
+                        if (PackageInfo[1]) {
+                            CanOpenAppCount++;
+                            listviewList.add(listOpenToken, map);
+                            listOpenToken++;
+                        } else if (PackageInfo[0]) {
+                            listviewList.add(listOpenToken + listRunToken, map);
+                            listRunToken++;
+                        } else {
+                            listviewList.add(listNoneToken + listOpenToken + listRunToken, map);
+                            listNoneToken++;
+                        }
+                    } else {
+                        map.put("HasLaunch", false);
+                        if (PackageInfo[1]) {
+                            listviewListTemp.add(listOpenTokenTemp, map);
+                            listOpenTokenTemp++;
+                        } else if (PackageInfo[0]) {
+                            listviewListTemp.add(listOpenTokenTemp + listRunTokenTemp, map);
+                            listRunTokenTemp++;
+                        } else {
+                            listviewListTemp.add(listNoneTokenTemp + listOpenTokenTemp + listRunTokenTemp, map);
+                            listNoneTokenTemp++;
+                        }
+                    }
+                }
+        }
+
+        private List<String> getPackageByShell() {
+            List<String> list = new ArrayList<>();
+            try {
+                Process process = Runtime.getRuntime().exec("pm list package");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    list.add(line);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return list;
         }
     }
 
