@@ -143,7 +143,7 @@ public class AppWhiteList extends AppCompatActivity {
             pdialog.setMax(le);
             le = 0;
 
-            List<String> packageListFromShell=new ArrayList<>();
+            List<String> packageListFromShell=getPackageByShell();
 
             for (PackageInfo pi : applist) {
                 checkPackage(pi.applicationInfo, pi.packageName);
@@ -271,7 +271,8 @@ public class AppWhiteList extends AppCompatActivity {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
                 String line = null;
                 while ((line = reader.readLine()) != null) {
-                    list.add(line);
+                //    System.out.println(line);
+                    list.add(line.replaceAll("package:",""));
                 }
 
             } catch (Exception e) {
