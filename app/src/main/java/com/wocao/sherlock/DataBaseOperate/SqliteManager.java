@@ -18,7 +18,7 @@ public class SqliteManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE AlarmList(alarmID INTEGER PRIMARY KEY,isTurnOn BOOLEAN,singelWay BOOLEAN,startTime INTEGER,endTime INTEGER,Monday BOOLEAN,Tuesday BOOLEAN,Wednesday BOOLEAN,Thursday BOOLEAN,Friday BOOLEAN,Saturday BOOLEAN,Sunday BOOLEAN,Mode INTEGER)");
+        db.execSQL("CREATE TABLE AlarmList(alarmID INTEGER PRIMARY KEY,isTurnOn BOOLEAN,singelWay BOOLEAN,startTime INTEGER,endTime INTEGER,Monday BOOLEAN,Tuesday BOOLEAN,Wednesday BOOLEAN,Thursday BOOLEAN,Friday BOOLEAN,Saturday BOOLEAN,Sunday BOOLEAN,Mode INTEGER,time BIGINT)");
         
         db.execSQL("CREATE TABLE UNLOCK_HISTORY(id INTEGER PRIMARY KEY,time BIGINT)");
     }
@@ -29,6 +29,10 @@ public class SqliteManager extends SQLiteOpenHelper {
         switch (i) {
             case 1:
                 db.execSQL("CREATE TABLE UNLOCK_HISTORY(id INTEGER PRIMARY KEY,time BIGINT)");
+                break;
+            case 2:
+                db.execSQL("ALTER TABLE AlarmList ADD COLUMN time BIGINT");
+
                 break;
         }
     }

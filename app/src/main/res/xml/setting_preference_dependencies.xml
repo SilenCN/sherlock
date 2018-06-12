@@ -55,6 +55,12 @@
             android:summary="开启该设置，在使用强制解锁10分钟后程序将启动并运行原来的服务。"
             android:title="重新启动" />
 
+        <com.wocao.sherlock.Setting.Preferences.CheckBoxEncryptPreference
+            android:defaultValue="false"
+            android:key="setting_better_usingTimerToRestart"
+            android:title="使用定时器"
+            android:summary="使用定时器(Timer)定时唤醒程序，重新启动时间更加准确但会增加耗电。(MIUI,EMUI,Flyme用户建议打开)"
+            />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="显示">

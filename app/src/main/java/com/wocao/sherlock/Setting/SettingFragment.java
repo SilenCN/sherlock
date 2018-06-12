@@ -8,11 +8,11 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+
 import com.wocao.sherlock.Accessibility.AccessbilityTool;
 import com.wocao.sherlock.Alarm.Notification.AlarmNotificationOperate;
 import com.wocao.sherlock.ControlByOther.ControlType;
 import com.wocao.sherlock.ControlByOther.Presenter.ControlByOtherDialogManager;
-import com.wocao.sherlock.Main.MainActivity;
 import com.wocao.sherlock.Permission.PolicyAdminUtils;
 import com.wocao.sherlock.R;
 import com.wocao.sherlock.Setting.ControlByOther.ControlByOtherSettingActivity;
@@ -29,7 +29,10 @@ public class SettingFragment extends PreferenceFragment {
     CheckBoxPreference accessibilityCP;
     CheckBoxPreference notificationCP;
     CheckBoxPreference showDesktopCP;
+    CheckBoxPreference restartAfterUnlockCP;
+    CheckBoxPreference usingTimerForRestartCP;
     Preference shortcutP;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +60,7 @@ public class SettingFragment extends PreferenceFragment {
             }
         });
 
-        showDesktopCP= ((CheckBoxPreference) findPreference(SettingUtils.getEncryptText("setting_better_showDesktopApp")));
+        showDesktopCP = ((CheckBoxPreference) findPreference(SettingUtils.getEncryptText("setting_better_showDesktopApp")));
         showDesktopCP.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
@@ -65,6 +68,17 @@ public class SettingFragment extends PreferenceFragment {
                     PolicyAdminUtils.checkDeviceAdmin(getActivity(), ((AppCompatActivity) getActivity()).getSupportFragmentManager(), true);
                 }
                 return false;
+            }
+        });
+
+
+        restartAfterUnlockCP = ((CheckBoxPreference) findPreference(SettingUtils.getEncryptText("setting_better_startAfterUnlock")));
+        usingTimerForRestartCP = (CheckBoxPreference) findPreference(SettingUtils.getEncryptText("setting_better_usingTimerToRestart"));
+        restartAfterUnlockCP.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                usingTimerForRestartCP.setEnabled((boolean) newValue);
+                return true;
             }
         });
 
@@ -98,8 +112,8 @@ public class SettingFragment extends PreferenceFragment {
                 return false;
             }
         });
-        shortcutP=findPreference("setting_quick_shortcut");
-        if (Build.VERSION.SDK_INT<25){
+        shortcutP = findPreference("setting_quick_shortcut");
+        if (Build.VERSION.SDK_INT < 25) {
             shortcutP.setEnabled(false);
         }
         shortcutP.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
@@ -109,7 +123,7 @@ public class SettingFragment extends PreferenceFragment {
                 return false;
             }
         });
-        ((Preference)findPreference("setting_float_view_diy")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+        ((Preference) findPreference("setting_float_view_diy")).setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
                 startActivity(new Intent(getActivity(), DiyFloatViewActivity.class));
